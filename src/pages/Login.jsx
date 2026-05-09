@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
 
@@ -7,6 +8,7 @@ export const Login = () => {
     const [password, setPassword] = useState('');
     const [Success, setSuccess] = useState(false);
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,10 +33,16 @@ export const Login = () => {
           });
           const data = await response.json();
         console.log(data);
-        if (data.user){setSuccess(true);
+        if (data.token){
+            
+            localStorage.setItem("token",data.token);
+            setSuccess(true);
             setError('')
             setUserID('');
             setPassword('');
+
+            // Redirect to Dashboard
+            navigate("/dashboard");
         }
 
         else{setSuccess(false);
