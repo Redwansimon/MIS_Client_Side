@@ -4,6 +4,7 @@ import './index.css'
 import { RouterProvider,createBrowserRouter } from 'react-router-dom'
 import { Login } from './pages/Login.jsx'
 import { Dashboard } from './pages/Dashboard.jsx'
+import { ProtectedRoute } from './protected_route/ProtectedRoute.jsx'
 
 const router = createBrowserRouter([
   {
@@ -12,7 +13,11 @@ const router = createBrowserRouter([
   },
   {
     path:"/dashboard",
-    element:<Dashboard/>
+    element:(
+      <ProtectedRoute>
+        <Dashboard/>
+      </ProtectedRoute>
+    )
   }
 ])
 
