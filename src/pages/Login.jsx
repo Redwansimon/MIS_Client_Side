@@ -71,7 +71,7 @@ export const Login = () => {
                 {/* Logo / Heading */}
                 <div className="text-center mb-8">
 
-                    <h1 className="font-cause text-5xl text-[#840AD9] mb-2">
+                    <h1 className="font-cause font-bold text-5xl text-[#840AD9] mb-2">
                         Mbrella
                     </h1>
                     <p className="text-gray-500 text-sm font-poppins">

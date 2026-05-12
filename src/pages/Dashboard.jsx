@@ -70,7 +70,9 @@ export const Dashboard = () => {
                     </div>
 
                     <div className="flex gap-7 items-center mr-8">
+                        
                         <div className="text-lg font-semibold text-gray-700">Support <span className='text-red-600 font-bold'>?</span></div>
+
                         <div className="dropdown dropdown-end">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
