@@ -7,7 +7,7 @@ export const Header = () => {
         
                         <div className="navbar bg-base-100 shadow-indigo-500 rounded-s shadow-md  ">
                             <div className="flex-1 ml-7 font-bold text-2xl text-indigo-600">
-                                Mbrella
+                                Mbrella LTD
                                 {/* <img src={logo} alt="Mbrella" /> */}
                             </div>
         
