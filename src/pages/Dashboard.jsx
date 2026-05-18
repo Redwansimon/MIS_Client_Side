@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import logo from "../assets/logo.webp"
 import { Header } from '../components/Header';
 import { Navigation } from '../components/Navigation';
+import { Navi } from '../components/Navi';
 
 
 
@@ -65,7 +66,8 @@ export const Dashboard = () => {
         <div className="min-h-screen bg-white text-slate-700">
 
             <Header></Header>
-            <Navigation/>
+            {/* <Navigation/> */}
+            <Navi/>
 
             {/* Footer */}
 

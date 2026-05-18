@@ -21,90 +21,90 @@ const NAV = [
     //     Sub_sub: [],
     // },
 
-     {
-        key: "STOCK",
-        label: "STOCK REPORT",
-        sub: [
+    //  {
+    //     key: "STOCK",
+    //     label: "STOCK REPORT",
+    //     sub: [
 
-            {
-                key: "SHOP_WISE",
-                label: "Shop Wise",
-                sub_sub: [],
-            },
+    //         {
+    //             key: "SHOP_WISE",
+    //             label: "Shop Wise",
+    //             sub_sub: [],
+    //         },
 
-            {
-                key: "STOCK_SUMMARY",
-                label: "Stock Summary",
-                sub_sub: [],
-            },
+    //         {
+    //             key: "STOCK_SUMMARY",
+    //             label: "Stock Summary",
+    //             sub_sub: [],
+    //         },
 
-            {
-                key: "PRODUCT_GROUP_WISE",
-                label: "Product Group Wise",
-                sub_sub: [
-                    {
-                        key: "REGULAR",
-                        label: "Regular",
-                    },
-                ],
-            },
+    //         {
+    //             key: "PRODUCT_GROUP_WISE",
+    //             label: "Product Group Wise",
+    //             sub_sub: [
+    //                 {
+    //                     key: "REGULAR",
+    //                     label: "Regular",
+    //                 },
+    //             ],
+    //         },
 
-            {
-                key: "PRODUCT_NAME_WISE",
-                label: "Product Name Wise",
-                sub_sub: [
-                    {
-                        key: "REGULAR",
-                        label: "Regular",
-                    },
-                ],
-            },
+    //         {
+    //             key: "PRODUCT_NAME_WISE",
+    //             label: "Product Name Wise",
+    //             sub_sub: [
+    //                 {
+    //                     key: "REGULAR",
+    //                     label: "Regular",
+    //                 },
+    //             ],
+    //         },
 
-            {
-                key: "STYLE_WISE",
-                label: "Style Wise",
-                sub_sub: [],
-            },
+    //         {
+    //             key: "STYLE_WISE",
+    //             label: "Style Wise",
+    //             sub_sub: [],
+    //         },
 
-            {
-                key: "SUPPLIER_WISE",
-                label: "Supplier Wise",
-                sub_sub: [
-                    {
-                        key: "DETAILS",
-                        label: "Details",
-                    },
+    //         {
+    //             key: "SUPPLIER_WISE",
+    //             label: "Supplier Wise",
+    //             sub_sub: [
+    //                 {
+    //                     key: "DETAILS",
+    //                     label: "Details",
+    //                 },
 
-                    {
-                        key: "SUMMARY",
-                        label: "Summary",
-                    },
-                ],
-            },
+    //                 {
+    //                     key: "SUMMARY",
+    //                     label: "Summary",
+    //                 },
+    //             ],
+    //         },
 
-            {
-                key: "SIZE_BREAKDOWN",
-                label: "Size Breakdown",
-                sub_sub: [],
-            },
+    //         {
+    //             key: "SIZE_BREAKDOWN",
+    //             label: "Size Breakdown",
+    //             sub_sub: [],
+    //         },
 
-            {
-                key: "UNRELEASED_REPORT",
-                label: "Unreleased Report",
-                sub_sub: [
-                    {
-                        key: "UNRELEASED",
-                        label: "Unreleased",
-                    },
+    //         {
+    //             key: "UNRELEASED_REPORT",
+    //             label: "Unreleased Report",
+    //             sub_sub: [
+    //                 {
+    //                     key: "UNRELEASED",
+    //                     label: "Unreleased",
+    //                 },
 
-                    {
-                        key: "PRODUCTION_PENDING",
-                        label: "Production Pending",
-                    },
-                ],
-            },
-        ],
-    },
+    //                 {
+    //                     key: "PRODUCTION_PENDING",
+    //                     label: "Production Pending",
+    //                 },
+    //             ],
+    //         },
+    //     ],
+    // },
     {
         key: "RECEIVE",
         label: "RECEIVE REPORT",
@@ -231,7 +231,7 @@ export const Navigation = () => {
 
                 {NAV.filter((n) => n.key !== "HOME").map((n) => {
                     const isActive = active === n.key;
-                    console.log(isActive);
+                    console.log(n.label)
 
                     return (
                         <button
@@ -280,52 +280,52 @@ export const Navigation = () => {
 
 
             {/* Sub Navigation */}
-{current && current.sub.length > 0 && (
-    <div className="px-8 mt-3 flex items-center gap-6 flex-wrap border-b border-slate-100 pb-3">
 
-        <button
-            onClick={() => setActiveSub("")}
-            className="text-xs font-semibold text-slate-700 hover:text-purple-600"
-        >
-            HOME
-        </button>
+            {current && current.sub.length > 0 && (
+                <div className="px-8 mt-3 flex items-center gap-6 flex-wrap border-b border-slate-100 pb-3">
 
-        {current.sub.map((s) => (
+                    <button
+                        onClick={() => setActiveSub("")}
+                        className="text-xs font-semibold text-slate-700 hover:text-purple-600"
+                    >
+                        HOME
+                    </button>
 
-            <div key={s.key} className="relative">
+                    {current.sub.map((s) => (
 
-                <button
-                    onClick={() => setActiveSub(s.key)}
-                    className={`text-xs font-medium transition ${
-                        activeSub === s.key
-                            ? "text-purple-600"
-                            : "text-slate-500 hover:text-purple-600"
-                    }`}
-                >
-                    {s.label}
-                </button>
+                        <div key={s.key} className="relative">
 
-                {/* Sub Sub Navigation */}
-                {activeSub === s.key &&
-                    s.sub_sub.length > 0 && (
-                        <div className="absolute top-7 left-0 bg-white border border-slate-200 rounded-md shadow-lg min-w-[180px] z-50">
+                            <button
+                                onClick={() => { setActiveSub(s.key); console.log(s.label) }}
+                                className={`text-xs font-medium transition ${activeSub === s.key
+                                        ? "text-purple-600"
+                                        : "text-slate-500 hover:text-purple-600"
+                                    }`}
+                            >
+                                {s.label}
+                            </button>
 
-                            {s.sub_sub.map((sub) => (
-                                <button
-                                    key={sub.key}
-                                    className="block w-full text-left px-4 py-2 text-sm text-slate-600 hover:bg-slate-100"
-                                >
-                                    {sub.label}
-                                </button>
-                            ))}
+                            {/* Sub Sub Navigation */}
+                            {activeSub === s.key &&
+                                s.sub_sub.length > 0 && (
+                                    <div className="absolute top-7 left-0 bg-white border border-slate-200 rounded-md shadow-lg min-w-[180px] z-50">
+
+                                        {s.sub_sub.map((sub) => (
+                                            <button
+                                                key={sub.key}
+                                                className="block w-full text-left px-4 py-2 text-sm text-slate-600 hover:bg-slate-100"
+                                            >
+                                                {sub.label}
+                                            </button>
+                                        ))}
+
+                                    </div>
+                                )}
 
                         </div>
-                    )}
-
-            </div>
-        ))}
-    </div>
-)}
+                    ))}
+                </div>
+            )}
 
             {/* Content */}
             <main className="px-8 py-6">
