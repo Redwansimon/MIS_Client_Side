@@ -1,14 +1,15 @@
 import React from 'react'
 import profileImg from "../assets/imgi_2_it.png"
+import logo from"../assets/Logo.webp"
 
 export const Header = () => {
   return (
-    <div className='m-2'>
+    <div className=''>
         
-                        <div className="navbar bg-base-100 shadow-indigo-500 rounded-s shadow-md  ">
-                            <div className="flex-1 ml-7 font-bold text-2xl text-indigo-600">
-                                Mbrella LTD
-                                {/* <img src={logo} alt="Mbrella" /> */}
+                        <div className="navbar bg-base-100  shadow-purple-100 mb-1 rounded-s shadow-md  ">
+                            <div className="flex-1 ml-7 font-bold text-2xl text-[#840AD9]">
+                               
+                                <img src={logo} alt="Mbrella" />
                             </div>
         
                             <div className="flex gap-7 items-center mr-8">
