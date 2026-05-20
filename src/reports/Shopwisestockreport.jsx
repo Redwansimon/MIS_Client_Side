@@ -31,12 +31,9 @@ export const Shopwisestockreport = () => {
   ];
 
   const reportTypes = [
-    "Stock Summary",
-    "Product Group Wise",
-    "Product Name Wise",
-    "Style Wise",
-    "Supplier Wise",
-    "Size Breakdown",
+    "Summary",
+    "Details",
+    
   ];
 
   const handleSubmit = (e) => {
@@ -109,6 +106,7 @@ export const Shopwisestockreport = () => {
             </div>
 
             {/* REPORT TYPE */}
+
             <div>
               <label className="block text-sm font-semibold text-slate-700 mb-2">
                 Report Type
@@ -138,6 +136,7 @@ export const Shopwisestockreport = () => {
             </div>
 
             {/* ORIGIN WISE */}
+
             <div className="flex items-end">
               <label className="flex items-center gap-3 cursor-pointer">
 
@@ -160,6 +159,7 @@ export const Shopwisestockreport = () => {
             </div>
 
             {/* BUTTON */}
+            
             <div className="flex items-end">
               <button
                 type="submit"
