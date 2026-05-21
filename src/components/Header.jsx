@@ -1,6 +1,6 @@
 import React from 'react'
 import profileImg from "../assets/imgi_2_it.png"
-import logo from"../assets/Logo.webp"
+import logo from"../assets/Mbrella.jpg"
 
 export const Header = () => {
   return (
@@ -9,7 +9,7 @@ export const Header = () => {
                         <div className="navbar bg-base-100  shadow-purple-100 mb-1 rounded-s shadow-md  ">
                             <div className="flex-1 ml-7 font-bold text-2xl text-[#840AD9]">
                                
-                                <img src={logo} alt="Mbrella" />
+                                <img src={logo} alt="Mbrella" className='max-h-16' />
                             </div>
         
                             <div className="flex gap-7 items-center mr-8">
