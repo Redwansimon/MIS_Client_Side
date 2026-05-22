@@ -6,7 +6,9 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { Login } from './pages/Login.jsx'
 import { Dashboard } from './pages/Dashboard.jsx'
 import { ProtectedRoute } from './protected_route/ProtectedRoute.jsx'
-import { Shopwisestockreport } from './reports/Shopwisestockreport.jsx'
+import { Shopwisestockreport } from './reports/stockReport/shopWiseStockReport/Shopwisestockreport.jsx'
+import { ShopDetails } from './reports/shopdetails/ShopDetails.jsx'
+
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "stock/shop-wise",
         element: <Shopwisestockreport />
+      },
+      {
+        path: "other/shoplist",
+        element: <ShopDetails/>
       }
     ]
   }

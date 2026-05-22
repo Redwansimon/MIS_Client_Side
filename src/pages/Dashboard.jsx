@@ -3,6 +3,7 @@ import { Outlet, useNavigate } from 'react-router-dom'
 
 import { Header } from '../components/Header'
 import { Navigation } from '../components/Navigation'
+import { ShopDetails } from '../reports/shopdetails/ShopDetails'
 
 export const Dashboard = () => {
 
@@ -52,24 +53,17 @@ export const Dashboard = () => {
             <Navigation />
 
             {/* PAGE CONTENT (THIS IS WHERE REPORT SHOWS) */}
-            <main className="flex-1 p-4">
+            <main className="">
                 <Outlet />
             </main>
+
+            
+
+
 
             {/* FOOTER */}
             <footer className="px-8 py-4 h-96 text-xs font-semibold text-purple-600">
                 POWERED BY IT@MBRELLA
-
-                <div>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Id itaque hic laudantium veniam nobis.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Repudiandae error nobis aspernatur dolor repellendus.
-                    </p>
-                </div>
             </footer>
 
         </div>
