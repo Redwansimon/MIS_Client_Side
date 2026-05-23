@@ -30,7 +30,7 @@ export const ShopwiseTable = ({showTable,shops,reportData,selectedShop}) => {
 
           <div className="overflow-x-auto mt-6">
 
-            <table className="w-full text-sm">
+            <table className="w-full text-xs">
 
               <thead className="bg-slate-100">
 
@@ -82,7 +82,7 @@ export const ShopwiseTable = ({showTable,shops,reportData,selectedShop}) => {
 
                       <tr
                         key={itemIndex}
-                        className="hover:bg-slate-50"
+                        className="hover:bg-slate-200"
                       >
 
                         <td className="border border-slate-300 px-4 py-2">

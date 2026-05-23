@@ -2,6 +2,8 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
+import Date from "./Time";
+import Time from "./Time";
 
 export const Navigation = () => {
 
@@ -1677,7 +1679,7 @@ export const Navigation = () => {
                 min-w-[260px] z-50
             "
                             >
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); setBreadcrumb("Others > Shop List")}}
                                     to="/dashboard/other/shoplist"
                                     className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
                                 >
@@ -1693,11 +1695,15 @@ export const Navigation = () => {
 
             </nav>
             
-            {breadcrumb && (
-                <div className="ml-5 mt-2  text-sm   text-[#7E22CE]">
+            <div className="mt-2 flex justify-between  items-center px-5 ">
+                {breadcrumb? (
+                <div className="  text-sm font-normal   text-[#196061]">
                 {breadcrumb}
+                
+            </div>) : (<div/>)
+            }
+            <Time></Time>
             </div>
-            )}
 
 
 
