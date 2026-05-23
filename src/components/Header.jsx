@@ -45,7 +45,7 @@ export const Header = () => {
 
             <NavLink to={'/dashboard'}><svg
                 viewBox="0 0 300 100"
-                className="w-52 h-16 cursor-pointer"
+                className="w-64 h-16 cursor-pointer "
                 to={'/dashboard'}
                 xmlns="http://www.w3.org/2000/svg"
             >

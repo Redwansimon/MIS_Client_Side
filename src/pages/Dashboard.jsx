@@ -4,6 +4,7 @@ import { Outlet, useNavigate } from 'react-router-dom'
 import { Header } from '../components/Header'
 import { Navigation } from '../components/Navigation'
 import { ShopDetails } from '../reports/shopdetails/ShopDetails'
+import { Loader } from '../components/Loader'
 
 export const Dashboard = () => {
 
@@ -36,11 +37,7 @@ export const Dashboard = () => {
     }, [navigate])
 
     if (loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center text-3xl">
-                Loading...........
-            </div>
-        )
+        return <Loader/>
     }
 
     return (

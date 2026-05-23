@@ -78,10 +78,10 @@ export const Navigation = () => {
                                 setOpenSubMenu("");
                                 setOpenChildMenu("");
                             }}
-                            className=" px-5 h-14 text-gray-800 font-semibold uppercase flex items-center gap-2 hover:bg-purple-50 transition">
+                            className=" px-5 h-14 text-gray-800 font-semibold text-sm uppercase flex items-center gap-2 hover:bg-purple-50 transition">
                             Stock Report
                             <span
-                                className={`text-[10px] transition-transform duration-300 ${openMenu === "stock" ? "rotate-180" : ""}`}
+                                className={`text-[10px]  transition-transform duration-300 ${openMenu === "stock" ? "rotate-180" : ""}`}
                             >
                                 ▼
                             </span>
@@ -92,7 +92,7 @@ export const Navigation = () => {
 
                             <div className="absolute top-full left-0 bg-white shadow-2xl shadow-purple-200 border rounded-md border-purple-100  min-w-[260px] z-50">
 
-                                <NavLink to="/dashboard/stock/shop-wise" className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
+                                <NavLink to="/dashboard/stock/shop-wise" className="block w-full text-left text-sm px-5 py-3 border-b hover:bg-purple-50"
                                 onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); setBreadcrumb("Stock Report > Shop Wise")}}
                                 >
                                     Shop Wise

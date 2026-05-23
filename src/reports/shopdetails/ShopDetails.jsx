@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Loader } from '../../components/Loader';
+import logo from "../../assets/Mbrella.jpg"
 
 export const ShopDetails = () => {
 
@@ -19,6 +20,7 @@ export const ShopDetails = () => {
         return <Loader/>
     }
     console.log(data);
+    console.log(data.find(x => x.STORE_NAME === "TAREQ ENTERPRISE- JOYDEBPUR"))
 
     return (
 
@@ -27,9 +29,7 @@ export const ShopDetails = () => {
             {/* HEADER */}
             <div className="text-center mb-6">
 
-                <h1 className="text-2xl font-bold tracking-wide text-[#206566]">
-                    MBRELLA
-                </h1>
+                <img src={logo} alt="" className='w-48 h-11 mx-auto' />
 
                 <p className="text-xs text-slate-500 mt-1">
                     HOUSE: 19, ROAD: 03, SECTOR: 03, UTTARA, DHAKA-1230, BANGLADESH
@@ -95,7 +95,7 @@ export const ShopDetails = () => {
                 VAT REG NO
             </th>
 
-            <th className="border border-slate-300 px-2 py-2 text-left">
+            <th className="border border-slate-300 px-2 py-2 text-left ">
                 ADDRESS
             </th>
 
@@ -158,7 +158,7 @@ export const ShopDetails = () => {
                     {item.VATREGNO}
                 </td>
 
-                <td className="border border-slate-300 px-4 py-2 break-words">
+                <td className="border border-slate-300 px-4 py-2 break-words uppercase">
                     {item.ADDRESS1}
                 </td>
 
