@@ -72,7 +72,7 @@ export const Shopwisestockreport = () => {
 
 
   return (
-    <div className="w-full min-h-screen bg-slate-50 p-4">
+    <div className="w-full min-h-screen bg-slate-50 p-4 text-sm ">
 
       {/* FORM CARD */}
       <div className="bg-white border border-slate-200 rounded-2xl shadow-md">

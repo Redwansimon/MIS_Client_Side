@@ -50,7 +50,7 @@ export const Navigation = () => {
                 <ul className="flex flex-wrap gap-2">
 
                     {/* HOME */}
-                    <li className="border-r rounded-md shadow-md shadow-purple-200">
+                    <li className="border-r text-sm rounded-md shadow-md shadow-purple-200">
 
                         <NavLink to="/dashboard" className="h-14 px-5 flex items-center justify-center text-gray-800 hover:bg-slate-200 transition"
                             onClick={() => {
@@ -65,7 +65,7 @@ export const Navigation = () => {
                     </li>
 
                     {/* STOCK REPORT */}
-                    <li className="relative border-r shadow-md shadow-purple-100">
+                    <li className="text-sm  relative border-r shadow-md shadow-purple-100">
 
                         <button
                             onClick={() => {
@@ -78,7 +78,7 @@ export const Navigation = () => {
                                 setOpenSubMenu("");
                                 setOpenChildMenu("");
                             }}
-                            className=" px-5 h-14 text-gray-800 font-semibold text-sm uppercase flex items-center gap-2 hover:bg-purple-50 transition">
+                            className=" px-5 h-14 text-gray-800 font-semibold  uppercase flex items-center gap-2 hover:bg-purple-50 transition">
                             Stock Report
                             <span
                                 className={`text-[10px]  transition-transform duration-300 ${openMenu === "stock" ? "rotate-180" : ""}`}
@@ -92,7 +92,7 @@ export const Navigation = () => {
 
                             <div className="absolute top-full left-0 bg-white shadow-2xl shadow-purple-200 border rounded-md border-purple-100  min-w-[260px] z-50">
 
-                                <NavLink to="/dashboard/stock/shop-wise" className="block w-full text-left text-sm px-5 py-3 border-b hover:bg-purple-50"
+                                <NavLink to="/dashboard/stock/shop-wise" className="block w-full text-left  px-5 py-3 border-b hover:bg-purple-50"
                                 onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); setBreadcrumb("Stock Report > Shop Wise")}}
                                 >
                                     Shop Wise
@@ -100,7 +100,7 @@ export const Navigation = () => {
 
                                 <NavLink
                                     to="/stock/summary"
-                                    className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
+                                    className="block w-full  text-left px-5 py-3 border-b hover:bg-purple-50"
                                      onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
                                 >
                                     Stock Summary
@@ -120,7 +120,7 @@ export const Navigation = () => {
                                             setOpenChildMenu("");
                                         }}
                                         className="
-                                            w-full px-5 py-3 border-b
+                                            w-full px-5 py-3 border-b 
                                             hover:hover:bg-purple-50 text-left
                                             flex items-center justify-between
                                             cursor-pointer
@@ -143,7 +143,7 @@ export const Navigation = () => {
 
                                     {openSubMenu === "product-group" && (
 
-                                        <div className="
+                                        <div className=" 
                                             absolute top-0 left-full
                                             bg-white shadow-2xl
                                             border border-slate-200
@@ -153,7 +153,7 @@ export const Navigation = () => {
                                             <NavLink
                                              onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
                                                 to="/stock/product-group/regular"
-                                                className="block w-full text-left px-5 py-3 hover:hover:bg-purple-50"
+                                                className=" block w-full text-left px-5 py-3 hover:hover:bg-purple-50"
                                             >
                                                 Regular
                                             </NavLink>
@@ -176,7 +176,7 @@ export const Navigation = () => {
 
                                             setOpenChildMenu("");
                                         }}
-                                        className="
+                                        className=" 
                                             w-full px-5 py-3 border-b
                                             hover:hover:bg-purple-50 text-left
                                             flex items-center justify-between
@@ -200,7 +200,7 @@ export const Navigation = () => {
 
                                     {openSubMenu === "product-name" && (
 
-                                        <div className="
+                                        <div className=" 
                                             absolute top-0 left-full
                                             bg-white shadow-2xl
                                             border border-slate-200
@@ -209,7 +209,7 @@ export const Navigation = () => {
 
                                             <NavLink  onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
                                                 to="/stock/product-name/regular"
-                                                className="block w-full text-left px-5 py-3 hover:hover:bg-purple-50"
+                                                className=" block w-full text-left px-5 py-3 hover:hover:bg-purple-50"
                                             >
                                                 Regular
                                             </NavLink>
@@ -221,7 +221,7 @@ export const Navigation = () => {
 
                                 <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
                                     to="/stock/style-wise"
-                                    className="block w-full text-left px-5 py-3 border-b hover:hover:bg-purple-50"
+                                    className=" block w-full text-left px-5 py-3 border-b hover:hover:bg-purple-50"
                                 >
                                     Style Wise
                                 </NavLink>
@@ -239,7 +239,7 @@ export const Navigation = () => {
 
                                             setOpenChildMenu("");
                                         }}
-                                        className="
+                                        className=" 
                                             w-full px-5 py-3 border-b
                                             hover:hover:bg-purple-50 text-left
                                             flex items-center justify-between
@@ -272,14 +272,14 @@ export const Navigation = () => {
 
                                             <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
                                                 to="/stock/supplier/details"
-                                                className="block w-full text-left px-5 py-3 border-b hover:hover:bg-purple-50"
+                                                className=" block w-full text-left px-5 py-3 border-b hover:hover:bg-purple-50"
                                             >
                                                 Details
                                             </NavLink>
 
                                             <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
                                                 to="/stock/supplier/summary"
-                                                className="block w-full text-left px-5 py-3 hover:hover:bg-purple-50"
+                                                className=" block w-full text-left px-5 py-3 hover:hover:bg-purple-50"
                                             >
                                                 Summary
                                             </NavLink>
@@ -291,7 +291,7 @@ export const Navigation = () => {
 
                                 <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
                                     to="/stock/size-breakdown"
-                                    className="block w-full text-left px-5 py-3 border-b hover:hover:bg-purple-50"
+                                    className="  block w-full text-left px-5 py-3 border-b hover:hover:bg-purple-50"
                                 >
                                     Size Breakdown
                                 </NavLink>
@@ -309,7 +309,7 @@ export const Navigation = () => {
 
                                             setOpenChildMenu("");
                                         }}
-                                        className="
+                                        className=" 
                                             w-full px-5 py-3
                                             hover:hover:bg-purple-50 text-left
                                             flex items-center justify-between
@@ -333,7 +333,7 @@ export const Navigation = () => {
 
                                     {openSubMenu === "unreleased" && (
 
-                                        <div className="
+                                        <div className=" 
                                             absolute top-0 left-full
                                             bg-white shadow-2xl
                                             border border-slate-200
@@ -342,14 +342,14 @@ export const Navigation = () => {
 
                                             <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
                                                 to="/stock/unreleased"
-                                                className="block w-full text-left px-5 py-3 border-b hover:hover:bg-purple-50"
+                                                className=" block w-full text-left px-5 py-3 border-b hover:hover:bg-purple-50"
                                             >
                                                 Unreleased
                                             </NavLink>
 
                                             <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
                                                 to="/stock/production-pending"
-                                                className="block w-full text-left px-5 py-3 hover:hover:bg-purple-50"
+                                                className=" block w-full text-left px-5 py-3 hover:hover:bg-purple-50"
                                             >
                                                 Production Pending
                                             </NavLink>
@@ -366,7 +366,7 @@ export const Navigation = () => {
 
                     {/* RECEIVE REPORT */}
                     {/* RECEIVE REPORT */}
-                    <li className="relative border-r shadow-md shadow-purple-100">
+                    <li className="text-sm  relative border-r shadow-md shadow-purple-100">
 
                         <button
                             onClick={() => {
@@ -684,7 +684,7 @@ export const Navigation = () => {
 
                     </li>
                     {/* ISSUE REPORT */}
-                    <li className="relative border-r shadow-md shadow-purple-100">
+                    <li className="text-sm  relative border-r shadow-md shadow-purple-100">
 
                         <button
                             onClick={() => {
@@ -835,7 +835,7 @@ export const Navigation = () => {
                                          {/* Return Report  */}
 
 
-                    <li className="relative border-r shadow-md shadow-purple-100">
+                    <li className=" text-sm relative border-r shadow-md shadow-purple-100">
                         <button
                             onClick={() => {
                                 setOpenMenu(
@@ -948,7 +948,7 @@ export const Navigation = () => {
 
                                         {/* Sale Report */}
 
-                    <li className="relative border-r shadow-md shadow-purple-100">
+                    <li className="text-sm  relative border-r shadow-md shadow-purple-100">
                         <button
                             onClick={() => {
                                 setOpenMenu(openMenu === "sale" ? "" : "sale");
@@ -1642,7 +1642,7 @@ export const Navigation = () => {
 
                             {/* Others */}
 
-                     <li className="relative border-r shadow-md shadow-purple-100">
+                     <li className="text-sm  relative border-r shadow-md shadow-purple-100">
                         <button
                             onClick={() => {
                                 setOpenMenu(
@@ -1695,9 +1695,9 @@ export const Navigation = () => {
 
             </nav>
             
-            <div className="mt-2 flex justify-between  items-center px-5 ">
+            <div className="mt-2 flex justify-between text-sm  items-center px-5 ">
                 {breadcrumb? (
-                <div className="  text-sm font-normal   text-[#196061]">
+                <div className="   font-normal   text-[#196061]">
                 {breadcrumb}
                 
             </div>) : (<div/>)
