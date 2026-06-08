@@ -206,13 +206,13 @@ export const ShopwiseTable = ({ reportData = [], selectedShop }) => {
               {/* SHOP HEADER */}
               <thead>
                 <tr className="bg-slate-100">
-                  <th colSpan={13} className="border p-2 text-left">
+                  <th colSpan={14} className="border p-2 text-left">
                     SHOP NAME: {selectedShop}
                   </th>
                 </tr>
 
                 <tr className="bg-slate-200">
-
+                  <th className="border p-2">SERIAL</th>
                   <th className="border p-2">BARCODE</th>
                   <th className="border p-2">CATEGORY</th>
                   <th className="border p-2">SUB CATEGORY</th>
@@ -235,7 +235,7 @@ export const ShopwiseTable = ({ reportData = [], selectedShop }) => {
 
                 {reportData.map((row, index) => (
                   <tr key={index} className="hover:bg-slate-100">
-
+                    <td className="border p-1">{index + 1}</td>
                     <td className="border p-1">{row.BARCODE}</td>
                     <td className="border p-1">{row.CATEGORY}</td>
                     <td className="border p-1">{row.SUB_CATEGORY}</td>

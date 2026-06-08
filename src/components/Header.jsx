@@ -1,7 +1,7 @@
 import React from 'react'
 import profileImg from "../assets/imgi_2_it.png"
 import logo from "../assets/Mbrella.jpg"
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 export const Header = () => {
     return (
@@ -9,10 +9,10 @@ export const Header = () => {
 
  
 
-            <li to={'/dashboard'}><svg
+            <Link to={'/dashboard'}><svg
                 viewBox="0 0 300 100"
                 className="w-64 h-16 cursor-pointer  "
-                to={'/dashboard'}
+           
                 xmlns="http://www.w3.org/2000/svg"
             >
 
@@ -41,7 +41,7 @@ export const Header = () => {
 
                 </text>
 
-            </svg></li>
+            </svg></Link>
 
             
 

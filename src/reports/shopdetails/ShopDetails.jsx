@@ -11,11 +11,45 @@ export const ShopDetails = () => {
 
         fetch("http://localhost:5000/api/shop")
             .then(res => res.json())
-            .then(data => {setData(data) ; setLoading(false);})
+            .then(data => {
+                if (data.message){
+                    setData([]);
+                    setLoading(false)
+                }
+                else{
+                
+                setData(data) ; setLoading(false);}
+            
+                })
+        .catch(err=>{
+            console.log(err);
+            setData([]);
+            setLoading(false);
+        })
+                
 
         
 
     }, [])
+
+//     useEffect(() => {
+//     fetch("http://localhost:5000/api/shop")
+//         .then(res => res.json())
+//         .then(data => {
+//             if (data.message) {
+//                 setData([]);
+//             } else {
+//                 setData(data);
+//             }
+
+//             setLoading(false);
+//         })
+//         .catch(err => {
+//             console.error(err);
+//             setData([]);
+//             setLoading(false);
+//         });
+// }, []);
     if (loading){
         return <Loader/>
     }

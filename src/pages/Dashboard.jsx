@@ -125,7 +125,7 @@ useEffect(() => {
             </main>
 
             {/* FOOTER */}
-            <footer className="px-8 py-4 h-96 text-xs font-semibold text-purple-600">
+            <footer className="px-8 py-4  text-xs font-semibold text-purple-600">
                 POWERED BY IT@MBRELLA
             </footer>
 
