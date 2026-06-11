@@ -198,6 +198,7 @@ export const Shopwisestockreport = () => {
   const [reportData, setReportData] = useState([]);
   const [showTable, setShowTable] = useState(false);
   const [loading, setLoading] = useState(false);
+  console.log(33);
 
   const shops = [
     "WAREHOUSE","UTTARA","SWADESHI-UTTARA","KASHIMPUR","ONLINE SHOP",
