@@ -19,7 +19,7 @@ export const Shopwisestockreport = () => {
     "MADARIPUR","BARISAL","FENI","TANGAIL","DOHAR",
     "COX BAZAR","B. CITY-1","B. CITY-2","NARAYANGANJ","MBRELLA-FACTORY"
   ];
-
+// the shop data needs to be come from database with store name and store code
   const reportTypes = ["Summary", "Details"];
 
   const handleSubmit = (e) => {
