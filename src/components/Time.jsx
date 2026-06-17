@@ -3,12 +3,14 @@ import React from "react";
 const Time = () => {
 
     const today = new Date();
+    console.log(today.toLocaleDateString());
 
     const fullDate = today.toLocaleDateString("en-US", {
         weekday: "long",
-        day: "numeric",
         month: "long",
+        day: "numeric",
         year: "numeric",
+        
     });
 
     return (

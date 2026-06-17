@@ -13,13 +13,33 @@ export const Shopwisestockreport = () => {
   const [loading, setLoading] = useState(false);
   
 
-  const shops = [
-    "WAREHOUSE","UTTARA","SWADESHI-UTTARA","KASHIMPUR","ONLINE SHOP",
-    "ISWARDI","CHITTAGONG","MYMENSHINGH","SYLHET","BHAIRAB",
-    "MADARIPUR","BARISAL","FENI","TANGAIL","DOHAR",
-    "COX BAZAR","B. CITY-1","B. CITY-2","NARAYANGANJ","MBRELLA-FACTORY"
-  ];
+
 // the shop data needs to be come from database with store name and store code
+  const [shopData, setshopData] = useState([]);
+
+  useEffect(()=>{
+   fetch("http://localhost:5000/api/shop")
+            .then(res => res.json())
+            .then(data => {
+                if (data.message){
+                    setshopData([]);
+                    setLoading(false)
+                }
+                else{
+                
+                setshopData(data) ; setLoading(false);}
+            
+                })
+        .catch(err=>{
+            console.log(err);
+            setshopData([]);
+            setLoading(false);
+        })
+  },[])
+
+
+
+
   const reportTypes = ["Summary", "Details"];
 
   const handleSubmit = (e) => {
@@ -50,6 +70,7 @@ export const Shopwisestockreport = () => {
     fetchData();
   }, [showTable]);
 
+  console.log(shopData)
   return (
     <div className="w-full min-h-screen bg-slate-50 p-4 text-sm">
 
@@ -65,8 +86,9 @@ export const Shopwisestockreport = () => {
               className="h-12 border rounded px-3"
             >
               <option value="">SELECT SHOP</option>
-              {shops.map((s, i) => (
-                <option key={i}>{s}</option>
+              {shopData.map((s, i) => (
+                <option key={i}>{s.
+STORE_NAME}</option>
               ))}
             </select>
 
