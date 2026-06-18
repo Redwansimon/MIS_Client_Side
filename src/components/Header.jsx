@@ -4,8 +4,23 @@ import logo from "../assets/Mbrella.jpg"
 import { Link, NavLink } from 'react-router-dom'
 
 export const Header = () => {
+
+  
+  const handleLogout = async () => {
+  const response = await fetch("http://localhost:5000/api/logout", {
+    method: "POST",
+    credentials: "include", // Session cookie পাঠানোর জন্য
+  });
+
+  const data = await response.json();
+  console.log(data);
+    
+  
+};
+
     return (
-        <div className='border-b-[1px]  '>
+        <div className="flex justify-between items-center">
+            <div className='border-b-[1px]  '>
 
  
 
@@ -46,6 +61,10 @@ export const Header = () => {
             
 
 
+        </div>
+        <button
+        onClick={() => handleLogout()}
+        className="mr-7 px-4 bg-[#840AD9] hover:bg-[#6d08b3] text-white py-3 rounded-xl font-medium transition" >Logout</button>
         </div>
     )
 }

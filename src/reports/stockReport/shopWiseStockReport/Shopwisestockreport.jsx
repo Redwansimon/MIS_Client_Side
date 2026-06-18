@@ -14,7 +14,7 @@ export const Shopwisestockreport = () => {
   
 
 
-// the shop data needs to be come from database with store name and store code
+//---------------------------------------shoplist 
   const [shopData, setshopData] = useState([]);
 
   useEffect(()=>{
