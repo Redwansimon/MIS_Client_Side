@@ -1,11 +1,11 @@
 import React from 'react'
 import profileImg from "../assets/imgi_2_it.png"
 import logo from "../assets/Mbrella.jpg"
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 export const Header = () => {
 
-  
+  const navigation = useNavigate();
   const handleLogout = async () => {
   const response = await fetch("http://localhost:5000/api/logout", {
     method: "POST",
@@ -14,6 +14,9 @@ export const Header = () => {
 
   const data = await response.json();
   console.log(data);
+  if (data.message = 'Logged out'){
+    navigation('/')
+  }
     
   
 };
