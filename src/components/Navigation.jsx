@@ -4,10 +4,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Date from "./Time";
 import Time from "./Time";
-
+import { FiMenu, FiX } from "react-icons/fi";
 export const Navigation = () => {
 
-
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [breadcrumb, setBreadcrumb] = useState("");
 
     // ACTIVE MAIN MENU
@@ -21,7 +21,9 @@ export const Navigation = () => {
     const navRef = useRef(null);
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (navRef.current && !navRef.current.contains(event.target)) {
+            console.log(navRef.current.contains(event.target))
+            console.log(navRef.current);
+            if (!navRef.current.contains(event.target)) {
                 setOpenMenu("");
                 setOpenSubMenu("");
                 setOpenChildMenu("");
@@ -36,8 +38,10 @@ export const Navigation = () => {
     }, []);
 
 
+
+
     return (
-        <div className=" "
+        <div className=""
 
         >
 
@@ -47,7 +51,20 @@ export const Navigation = () => {
                 onClick={(e) => e.stopPropagation()}
             >
 
-                <ul className="flex flex-wrap gap-2">
+                <div className="lg:hidden flex items-center justify-between h-14 px-4">
+
+                    <button
+                        onClick={() => setMobileMenuOpen(true)}
+                        className="text-xl"
+                    >
+                        <FiMenu />
+                    </button>
+
+
+
+                </div>
+
+                <ul className="hidden lg:flex flex-wrap gap-2">
 
                     {/* HOME */}
                     <li className="border-r text-sm rounded-md shadow-md shadow-purple-200">
@@ -93,7 +110,7 @@ export const Navigation = () => {
                             <div className="absolute top-full left-0 bg-white shadow-2xl shadow-purple-200 border rounded-md border-purple-100  min-w-[260px] z-50">
 
                                 <NavLink to="/dashboard/stock/shop-wise" className="block w-full text-left  px-5 py-3 border-b hover:bg-purple-50"
-                                onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); setBreadcrumb("Stock Report > Shop Wise")}}
+                                    onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); setBreadcrumb("Stock Report > Shop Wise") }}
                                 >
                                     Shop Wise
                                 </NavLink>
@@ -101,7 +118,7 @@ export const Navigation = () => {
                                 <NavLink
                                     to="/stock/summary"
                                     className="block w-full  text-left px-5 py-3 border-b hover:bg-purple-50"
-                                     onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                    onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                 >
                                     Stock Summary
                                 </NavLink>
@@ -151,7 +168,7 @@ export const Navigation = () => {
                                         ">
 
                                             <NavLink
-                                             onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                                onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/stock/product-group/regular"
                                                 className=" block w-full text-left px-5 py-3 hover:hover:bg-purple-50"
                                             >
@@ -207,7 +224,7 @@ export const Navigation = () => {
                                             min-w-[220px]
                                         ">
 
-                                            <NavLink  onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/stock/product-name/regular"
                                                 className=" block w-full text-left px-5 py-3 hover:hover:bg-purple-50"
                                             >
@@ -219,7 +236,7 @@ export const Navigation = () => {
 
                                 </div>
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/stock/style-wise"
                                     className=" block w-full text-left px-5 py-3 border-b hover:hover:bg-purple-50"
                                 >
@@ -270,14 +287,14 @@ export const Navigation = () => {
                                             min-w-[220px]
                                         ">
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/stock/supplier/details"
                                                 className=" block w-full text-left px-5 py-3 border-b hover:hover:bg-purple-50"
                                             >
                                                 Details
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/stock/supplier/summary"
                                                 className=" block w-full text-left px-5 py-3 hover:hover:bg-purple-50"
                                             >
@@ -289,7 +306,7 @@ export const Navigation = () => {
 
                                 </div>
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/stock/size-breakdown"
                                     className="  block w-full text-left px-5 py-3 border-b hover:hover:bg-purple-50"
                                 >
@@ -340,14 +357,14 @@ export const Navigation = () => {
                                             min-w-[240px]
                                         ">
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/stock/unreleased"
                                                 className=" block w-full text-left px-5 py-3 border-b hover:hover:bg-purple-50"
                                             >
                                                 Unreleased
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/stock/production-pending"
                                                 className=" block w-full text-left px-5 py-3 hover:hover:bg-purple-50"
                                             >
@@ -410,21 +427,21 @@ export const Navigation = () => {
             min-w-[260px] z-50
         ">
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/receive/month-wise"
                                     className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
                                 >
                                     Month Wise
                                 </NavLink>
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/receive/shop-wise"
                                     className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
                                 >
                                     Shop Wise
                                 </NavLink>
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/receive/challan-wise"
                                     className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
                                 >
@@ -475,7 +492,7 @@ export const Navigation = () => {
                         min-w-[240px]
                     ">
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/receive/product-group/regular"
                                                 className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
                                             >
@@ -524,14 +541,14 @@ export const Navigation = () => {
                                     min-w-[220px]
                                 ">
 
-                                                        <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                                        <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                             to="/receive/product-group/type-wise/year-wise"
                                                             className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
                                                         >
                                                             Year Wise
                                                         </NavLink>
 
-                                                        <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                                        <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                             to="/receive/product-group/type-wise/origin-wise"
                                                             className="block w-full text-left px-5 py-3 hover:bg-purple-50"
                                                         >
@@ -592,7 +609,7 @@ export const Navigation = () => {
                         min-w-[240px]
                     ">
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/receive/product-name/regular"
                                                 className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
                                             >
@@ -641,14 +658,14 @@ export const Navigation = () => {
                                     min-w-[220px]
                                 ">
 
-                                                        <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                                        <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                             to="/receive/product-name/type-wise/year-wise"
                                                             className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
                                                         >
                                                             Year Wise
                                                         </NavLink>
 
-                                                        <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                                        <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                             to="/receive/product-name/type-wise/origin-wise"
                                                             className="block w-full text-left px-5 py-3 hover:bg-purple-50"
                                                         >
@@ -665,14 +682,14 @@ export const Navigation = () => {
 
                                 </div>
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/receive/style-wise"
                                     className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
                                 >
                                     Style Wise
                                 </NavLink>
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/receive/supplier-wise"
                                     className="block w-full text-left px-5 py-3 hover:bg-purple-50"
                                 >
@@ -728,42 +745,42 @@ export const Navigation = () => {
             min-w-[260px] z-50
         ">
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/issue/month-wise"
                                     className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
                                 >
                                     Month Wise
                                 </NavLink>
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/issue/shop-wise"
                                     className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
                                 >
                                     Shop Wise
                                 </NavLink>
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/issue/delivery-challan-wise"
                                     className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
                                 >
                                     Delivery Challan Wise
                                 </NavLink>
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/issue/product-group-wise"
                                     className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
                                 >
                                     Product Group Wise
                                 </NavLink>
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/issue/product-name-wise"
                                     className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
                                 >
                                     Product Name Wise
                                 </NavLink>
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/issue/style-wise"
                                     className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
                                 >
@@ -814,7 +831,7 @@ export const Navigation = () => {
                         min-w-[220px]
                     ">
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/issue/delivery-comparison/shop-wise"
                                                 className="block w-full text-left px-5 py-3 hover:bg-purple-50"
                                             >
@@ -831,8 +848,8 @@ export const Navigation = () => {
 
                     </li>
 
-                                        
-                                         {/* Return Report  */}
+
+                    {/* Return Report  */}
 
 
                     <li className=" text-sm relative border-r shadow-md shadow-purple-100">
@@ -872,14 +889,14 @@ export const Navigation = () => {
                 min-w-[260px] z-50
             "
                             >
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/return/month-wise"
                                     className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
                                 >
                                     Month Wise
                                 </NavLink>
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/return/challan-wise"
                                     className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
                                 >
@@ -909,8 +926,8 @@ export const Navigation = () => {
 
                                         <span
                                             className={`transition-transform duration-300 ${openSubMenu === "return-product-name"
-                                                    ? "rotate-90"
-                                                    : ""
+                                                ? "rotate-90"
+                                                : ""
                                                 }`}
                                         >
                                             ▶
@@ -926,7 +943,7 @@ export const Navigation = () => {
                             min-w-[220px]
                         "
                                         >
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/return/product-name/regular"
                                                 className="block w-full text-left px-5 py-3 hover:bg-purple-50"
                                             >
@@ -936,7 +953,7 @@ export const Navigation = () => {
                                     )}
                                 </div>
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/return/style-wise"
                                     className="block w-full text-left px-5 py-3 hover:bg-purple-50"
                                 >
@@ -946,7 +963,7 @@ export const Navigation = () => {
                         )}
                     </li>
 
-                                        {/* Sale Report */}
+                    {/* Sale Report */}
 
                     <li className="text-sm  relative border-r shadow-md shadow-purple-100">
                         <button
@@ -973,8 +990,8 @@ export const Navigation = () => {
                         {openMenu === "sale" && (
                             <div
                                 className="absolute top-full left-0 bg-white shadow-2xl shadow-purple-200 border rounded-md border-purple-100 min-w-[280px] z-50">
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}} 
-                                to="/sale/home" className="block px-5 py-3 border-b hover:bg-purple-50">
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
+                                    to="/sale/home" className="block px-5 py-3 border-b hover:bg-purple-50">
                                     HOME
                                 </NavLink>
 
@@ -998,8 +1015,8 @@ export const Navigation = () => {
 
                                         <span
                                             className={`transition-transform duration-300 ${openSubMenu === "shop-wise"
-                                                    ? "rotate-90"
-                                                    : ""
+                                                ? "rotate-90"
+                                                : ""
                                                 }`}
                                         >
                                             ▶
@@ -1014,49 +1031,49 @@ export const Navigation = () => {
                             border-slate-200 min-w-[320px]
                         "
                                         >
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/shop/date-month-wise"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Date & Month Wise
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/shop/day-wise-cross-table"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Day Wise Cross Table
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/shop/day-wise-cross-table-no-bag"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Day Wise Cross Table (Without Shopping Bag)
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/shop/invoice-wise"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Invoice Wise
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/shop/regular-report"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Regular Report
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/shop/sale-summary"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Sale Summary
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/shop/sale-summary-stock"
                                                 className="block px-5 py-3 hover:bg-purple-50"
                                             >
@@ -1086,8 +1103,8 @@ export const Navigation = () => {
 
                                         <span
                                             className={`transition-transform duration-300 ${openSubMenu === "product-group"
-                                                    ? "rotate-90"
-                                                    : ""
+                                                ? "rotate-90"
+                                                : ""
                                                 }`}
                                         >
                                             ▶
@@ -1102,16 +1119,16 @@ export const Navigation = () => {
                             border-slate-200 min-w-[250px]
                         "
                                         >
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
-                                            
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
+
                                                 to="/sale/product-group/regular"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Regular
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
-                                            
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
+
                                                 to="/sale/product-group/multi-select"
                                                 className="block px-5 py-3 hover:bg-purple-50"
                                             >
@@ -1141,8 +1158,8 @@ export const Navigation = () => {
 
                                         <span
                                             className={`transition-transform duration-300 ${openSubMenu === "product-name"
-                                                    ? "rotate-90"
-                                                    : ""
+                                                ? "rotate-90"
+                                                : ""
                                                 }`}
                                         >
                                             ▶
@@ -1157,21 +1174,21 @@ export const Navigation = () => {
                             border-slate-200 min-w-[250px]
                         "
                                         >
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/product-name/style-wise"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Style Wise
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/product-name/with-size"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 With Size
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/product-name/without-size"
                                                 className="block px-5 py-3 hover:bg-purple-50"
                                             >
@@ -1181,14 +1198,14 @@ export const Navigation = () => {
                                     )}
                                 </div>
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/sale/style-wise"
                                     className="block px-5 py-3 border-b hover:bg-purple-50"
                                 >
                                     Style Wise
                                 </NavLink>
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/sale/daily-sales-report"
                                     className="block px-5 py-3 border-b hover:bg-purple-50"
                                 >
@@ -1215,8 +1232,8 @@ export const Navigation = () => {
 
                                         <span
                                             className={`transition-transform duration-300 ${openSubMenu === "circular-wise"
-                                                    ? "rotate-90"
-                                                    : ""
+                                                ? "rotate-90"
+                                                : ""
                                                 }`}
                                         >
                                             ▶
@@ -1231,14 +1248,14 @@ export const Navigation = () => {
                             border-slate-200 min-w-[250px]
                         "
                                         >
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/circular/process-circular"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Process Circular
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/circular/report"
                                                 className="block px-5 py-3 hover:bg-purple-50"
                                             >
@@ -1268,8 +1285,8 @@ export const Navigation = () => {
 
                                         <span
                                             className={`transition-transform duration-300 ${openSubMenu === "sale-through"
-                                                    ? "rotate-90"
-                                                    : ""
+                                                ? "rotate-90"
+                                                : ""
                                                 }`}
                                         >
                                             ▶
@@ -1284,28 +1301,28 @@ export const Navigation = () => {
                             border-slate-200 min-w-[250px]
                         "
                                         >
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/through/analysis"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Receive, Sale Analysis
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/through/product-group"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Product Group Wise
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/through/product-name"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Product Name Wise
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/through/style-wise"
                                                 className="block px-5 py-3 hover:bg-purple-50"
                                             >
@@ -1335,8 +1352,8 @@ export const Navigation = () => {
 
                                         <span
                                             className={`transition-transform duration-300 ${openSubMenu === "discount-report"
-                                                    ? "rotate-90"
-                                                    : ""
+                                                ? "rotate-90"
+                                                : ""
                                                 }`}
                                         >
                                             ▶
@@ -1351,28 +1368,28 @@ export const Navigation = () => {
                             border-slate-200 min-w-[270px]
                         "
                                         >
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/discount/wise-sale"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Discount Wise Sale
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/discount/percentage-wise"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Discount(%) Wise Sale
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/discount/customer"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Customer Discount
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/discount/staff-special"
                                                 className="block px-5 py-3 hover:bg-purple-50"
                                             >
@@ -1402,8 +1419,8 @@ export const Navigation = () => {
 
                                         <span
                                             className={`transition-transform duration-300 ${openSubMenu === "commission-report"
-                                                    ? "rotate-90"
-                                                    : ""
+                                                ? "rotate-90"
+                                                : ""
                                                 }`}
                                         >
                                             ▶
@@ -1418,21 +1435,21 @@ export const Navigation = () => {
                             border-slate-200 min-w-[300px]
                         "
                                         >
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/commission/franchise"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Franchise Commission
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/commission/supplier-rmg"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Supplier Comm(RMG Product)
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/commission/supplier-non-rmg"
                                                 className="block px-5 py-3 hover:bg-purple-50"
                                             >
@@ -1462,8 +1479,8 @@ export const Navigation = () => {
 
                                         <span
                                             className={`transition-transform duration-300 ${openSubMenu === "designer-report"
-                                                    ? "rotate-90"
-                                                    : ""
+                                                ? "rotate-90"
+                                                : ""
                                                 }`}
                                         >
                                             ▶
@@ -1474,12 +1491,12 @@ export const Navigation = () => {
                                         <div
                                             className="absolute top-0 left-full bg-white shadow-2xl border border-slate-200 min-w-[300px]">
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
-                                             to="/sale/designer/regular-report" className="block px-5 py-3 border-b hover:bg-purple-50">
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
+                                                to="/sale/designer/regular-report" className="block px-5 py-3 border-b hover:bg-purple-50">
                                                 Regular Report
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/designer/performance"
                                                 className="block px-5 py-3 hover:bg-purple-50"
                                             >
@@ -1489,14 +1506,14 @@ export const Navigation = () => {
                                     )}
                                 </div>
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/sale/salesmen-performance"
                                     className="block px-5 py-3 border-b hover:bg-purple-50"
                                 >
                                     Salesmen Performance
                                 </NavLink>
 
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                     to="/sale/best-sale"
                                     className="block px-5 py-3 border-b hover:bg-purple-50"
                                 >
@@ -1523,8 +1540,8 @@ export const Navigation = () => {
 
                                         <span
                                             className={`transition-transform duration-300 ${openSubMenu === "global-report"
-                                                    ? "rotate-90"
-                                                    : ""
+                                                ? "rotate-90"
+                                                : ""
                                                 }`}
                                         >
                                             ▶
@@ -1539,21 +1556,21 @@ export const Navigation = () => {
                             border-slate-200 min-w-[300px]
                         "
                                         >
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/global/product-wise"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Product Wise
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/global/performance-report"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Product Performance Report
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/global/performance-report-2"
                                                 className="block px-5 py-3 hover:bg-purple-50"
                                             >
@@ -1583,8 +1600,8 @@ export const Navigation = () => {
 
                                         <span
                                             className={`transition-transform duration-300 ${openSubMenu === "sale-comparison"
-                                                    ? "rotate-90"
-                                                    : ""
+                                                ? "rotate-90"
+                                                : ""
                                                 }`}
                                         >
                                             ▶
@@ -1599,35 +1616,35 @@ export const Navigation = () => {
                             border-slate-200 min-w-[250px]
                         "
                                         >
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/comparison/day-wise"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Day Wise
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/comparison/month-wise"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Month Wise
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/comparison/shop-wise"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Shop Wise
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/comparison/group-wise"
                                                 className="block px-5 py-3 border-b hover:bg-purple-50"
                                             >
                                                 Group Wise
                                             </NavLink>
 
-                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu("");}}
+                                            <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); }}
                                                 to="/sale/comparison/product-wise"
                                                 className="block px-5 py-3 hover:bg-purple-50"
                                             >
@@ -1640,9 +1657,9 @@ export const Navigation = () => {
                         )}
                     </li>
 
-                            {/* Others */}
+                    {/* Others */}
 
-                     <li className="text-sm  relative border-r shadow-md shadow-purple-100">
+                    <li className="text-sm  relative border-r shadow-md shadow-purple-100">
                         <button
                             onClick={() => {
                                 setOpenMenu(
@@ -1679,30 +1696,247 @@ export const Navigation = () => {
                 min-w-[260px] z-50
             "
                             >
-                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); setBreadcrumb("Others > Shop List")}}
+                                <NavLink onClick={() => { setOpenMenu(""); setOpenSubMenu(""); setOpenChildMenu(""); setBreadcrumb("Others > Shop List") }}
                                     to="/dashboard/other/shoplist"
                                     className="block w-full text-left px-5 py-3 border-b hover:bg-purple-50"
                                 >
                                     Shop List
                                 </NavLink>
 
-                            
+
                             </div>
                         )}
                     </li>
 
                 </ul>
 
+
+                {/* Overlay */}
+                {
+                    mobileMenuOpen && (
+                        <div
+                            className="fixed inset-0 bg-black/40 z-40"
+                            onClick={() => setMobileMenuOpen(false)}
+                        />
+                    )
+                }
+
+                {/* Mobile Sidebar */}
+                <div
+                    className={` text-sm 
+        lg:hidden fixed top-0 left-0 h-screen w-72
+        bg-white shadow-2xl z-50
+        transition-transform duration-700
+        overflow-y-auto
+        ${mobileMenuOpen
+                            ? "translate-x-0"
+                            : "-translate-x-full"
+                        }
+    `}
+                >
+
+                    {/* Header */}
+                    <div className="flex items-center justify-between p-4 border-b">
+
+
+
+                        <button
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="text-xl"
+                        >
+                            <FiX />
+                        </button>
+
+                    </div>
+
+                    {/* Menu */}
+                    <ul className="flex flex-col">
+
+                        {/* HOME */}
+                        <li>
+
+                            <NavLink
+                                to="/dashboard"
+                                className="block px-5 py-4 border-b hover:bg-purple-50"
+                                onClick={() => {
+                                    setMobileMenuOpen(false);
+                                    setOpenMenu("");
+                                    setOpenSubMenu("");
+                                    setOpenChildMenu("");
+                                }}
+                            >
+                                🏠 Home
+                            </NavLink>
+
+                        </li>
+
+                        {/* STOCK REPORT */}
+                        <li>
+
+                            <button
+                                onClick={() =>
+                                    setOpenMenu(
+                                        openMenu === "stock-report"
+                                            ? ""
+                                            : "stock-report"
+                                    )
+                                }
+                                className="font-semibold w-full  flex items-center justify-between px-5 py-4 border-b hover:bg-purple-50"
+                            >
+                                <span>Stock Report</span>
+
+                                <span>
+                                    {
+                                        openMenu === "stock-report"
+                                            ? "-"
+                                            : "+"
+                                    }
+                                </span>
+
+                            </button>
+
+
+                            <div
+                                className={`overflow-hidden origin-top transition-all duration-1000 ${openMenu === "stock-report"
+                                        ? " opacity-100"
+                                        : "max-h-0 opacity-0"
+                                    }`}
+                            >
+                                <NavLink
+                                    to="/dashboard/stock/shop-wise"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                    }}
+                                >
+                                    Shop Wise
+                                </NavLink>
+
+                                <NavLink
+                                    to="/stock/summary"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                    }}
+                                >
+                                    Stock Summary
+                                </NavLink>
+                                <NavLink
+                                    to="/stock/summary"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                    }}
+                                >
+                                    Stock Summary
+                                </NavLink>
+                                <NavLink
+                                    to="/stock/summary"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                    }}
+                                >
+                                    Stock Summary
+                                </NavLink>
+                            </div>
+
+                        </li>
+                        <li>
+
+                            <button
+                                onClick={() =>
+                                    setOpenMenu(
+                                        openMenu === "stock"
+                                            ? ""
+                                            : "stock"
+                                    )
+                                }
+                                className="w-full  flex items-center justify-between px-5 py-4 border-b hover:bg-purple-50"
+                            >
+                                <span>Stock Report</span>
+
+                                <span>
+                                    {
+                                        openMenu === "stock"
+                                            ? "-"
+                                            : "+"
+                                    }
+                                </span>
+
+                            </button>
+
+                            
+
+                            <div
+                                className={`overflow-hidden origin-top transition-all duration-1000 ${openMenu === "stock"
+                                        ? " opacity-100"
+                                        : "max-h-0 opacity-0"
+                                    }`}
+                            >
+                                <NavLink
+                                    to="/dashboard/stock/shop-wise"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                    }}
+                                >
+                                    Shop Wise
+                                </NavLink>
+
+                                <NavLink
+                                    to="/stock/summary"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                    }}
+                                >
+                                    Stock Summary
+                                </NavLink>
+                                <NavLink
+                                    to="/stock/summary"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                    }}
+                                >
+                                    Stock Summary
+                                </NavLink>
+                                <NavLink
+                                    to="/stock/summary"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                    }}
+                                >
+                                    Stock Summary
+                                </NavLink>
+                            </div>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
             </nav>
-            
+
             <div className="mt-2 flex justify-between text-sm  items-center px-5 ">
-                {breadcrumb? (
-                <div className="   font-normal   text-[#196061]">
-                {breadcrumb}
-                
-            </div>) : (<div/>)
-            }
-            <Time></Time>
+                {breadcrumb ? (
+                    <div className="   font-normal   text-[#196061]">
+                        {breadcrumb}
+
+                    </div>) : (<div />)
+                }
+                <Time></Time>
             </div>
 
 
