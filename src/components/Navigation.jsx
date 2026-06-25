@@ -63,7 +63,7 @@ export const Navigation = () => {
 
 
                 </div>
-
+                {/* --------------------------------desktop menu  */}
                 <ul className="hidden lg:flex flex-wrap gap-2">
 
                     {/* HOME */}
@@ -381,7 +381,7 @@ export const Navigation = () => {
 
                     </li>
 
-                    {/* RECEIVE REPORT */}
+
                     {/* RECEIVE REPORT */}
                     <li className="text-sm  relative border-r shadow-md shadow-purple-100">
 
@@ -1724,15 +1724,15 @@ export const Navigation = () => {
                 {/* Mobile Sidebar */}
                 <div
                     className={` text-sm 
-        lg:hidden fixed top-0 left-0 h-screen w-72
-        bg-white shadow-2xl z-50
-        transition-transform duration-700
-        overflow-y-auto
-        ${mobileMenuOpen
+                lg:hidden fixed top-0 left-0 h-screen w-72
+                bg-white shadow-2xl z-50
+                transition-transform duration-700
+                overflow-y-auto
+                ${mobileMenuOpen
                             ? "translate-x-0"
                             : "-translate-x-full"
                         }
-    `}
+            `}
                 >
 
                     {/* Header */}
@@ -1749,7 +1749,7 @@ export const Navigation = () => {
 
                     </div>
 
-                    {/* Menu */}
+                    {/* ------------------------------ Menu */}
                     <ul className="flex flex-col">
 
                         {/* HOME */}
@@ -1770,18 +1770,22 @@ export const Navigation = () => {
 
                         </li>
 
+
                         {/* STOCK REPORT */}
                         <li>
 
                             <button
-                                onClick={() =>
+                                onClick={() => {
                                     setOpenMenu(
                                         openMenu === "stock-report"
                                             ? ""
                                             : "stock-report"
-                                    )
-                                }
-                                className="font-semibold w-full  flex items-center justify-between px-5 py-4 border-b hover:bg-purple-50"
+                                    );
+
+                                    setOpenSubMenu("");
+                                    setOpenChildMenu("");
+                                }}
+                                className="font-semibold w-full flex items-center justify-between px-5 py-4 border-b hover:bg-purple-50"
                             >
                                 <span>Stock Report</span>
 
@@ -1795,19 +1799,21 @@ export const Navigation = () => {
 
                             </button>
 
-
                             <div
-                                className={`overflow-hidden origin-top transition-all duration-1000 ${openMenu === "stock-report"
-                                        ? " opacity-100"
-                                        : "max-h-0 opacity-0"
+                                className={`overflow-hidden transition-all duration-500 ${openMenu === "stock-report"
+                                    ? "max-h-[2000px] opacity-100"
+                                    : "max-h-0 opacity-0"
                                     }`}
                             >
+
                                 <NavLink
                                     to="/dashboard/stock/shop-wise"
                                     className="block px-10 py-3 border-b hover:bg-purple-100"
                                     onClick={() => {
                                         setMobileMenuOpen(false);
                                         setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
                                     }}
                                 >
                                     Shop Wise
@@ -1819,50 +1825,257 @@ export const Navigation = () => {
                                     onClick={() => {
                                         setMobileMenuOpen(false);
                                         setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
                                     }}
                                 >
                                     Stock Summary
                                 </NavLink>
+
+                                {/* PRODUCT GROUP WISE */}
+                                <button
+                                    onClick={() =>
+                                        setOpenSubMenu(
+                                            openSubMenu === "product-group"
+                                                ? ""
+                                                : "product-group"
+                                        )
+                                    }
+                                    className="w-full flex items-center justify-between px-10 py-3 border-b hover:bg-purple-100"
+                                >
+                                    <span>Product Group Wise</span>
+
+                                    <span>
+                                        {
+                                            openSubMenu === "product-group"
+                                                ? "-"
+                                                : "+"
+                                        }
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-500 ${openSubMenu === "product-group"
+                                        ? "max-h-20 opacity-100"
+                                        : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <NavLink
+                                        to="/stock/product-group/regular"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Regular
+                                    </NavLink>
+                                </div>
+
+                                {/* PRODUCT NAME WISE */}
+                                <button
+                                    onClick={() =>
+                                        setOpenSubMenu(
+                                            openSubMenu === "product-name"
+                                                ? ""
+                                                : "product-name"
+                                        )
+                                    }
+                                    className="w-full flex items-center justify-between px-10 py-3 border-b hover:bg-purple-100"
+                                >
+                                    <span>Product Name Wise</span>
+
+                                    <span>
+                                        {
+                                            openSubMenu === "product-name"
+                                                ? "-"
+                                                : "+"
+                                        }
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-500 ${openSubMenu === "product-name"
+                                        ? "max-h-20 opacity-100"
+                                        : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <NavLink
+                                        to="/stock/product-name/regular"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Regular
+                                    </NavLink>
+                                </div>
+
                                 <NavLink
-                                    to="/stock/summary"
+                                    to="/stock/style-wise"
                                     className="block px-10 py-3 border-b hover:bg-purple-100"
                                     onClick={() => {
                                         setMobileMenuOpen(false);
                                         setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
                                     }}
                                 >
-                                    Stock Summary
+                                    Style Wise
                                 </NavLink>
+
+                                {/* SUPPLIER WISE */}
+                                <button
+                                    onClick={() =>
+                                        setOpenSubMenu(
+                                            openSubMenu === "supplier"
+                                                ? ""
+                                                : "supplier"
+                                        )
+                                    }
+                                    className="w-full flex items-center justify-between px-10 py-3 border-b hover:bg-purple-100"
+                                >
+                                    <span>Supplier Wise</span>
+
+                                    <span>
+                                        {
+                                            openSubMenu === "supplier"
+                                                ? "-"
+                                                : "+"
+                                        }
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-500 ${openSubMenu === "supplier"
+                                        ? "max-h-40 opacity-100"
+                                        : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <NavLink
+                                        to="/stock/supplier/details"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Details
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/stock/supplier/summary"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Summary
+                                    </NavLink>
+                                </div>
+
                                 <NavLink
-                                    to="/stock/summary"
+                                    to="/stock/size-breakdown"
                                     className="block px-10 py-3 border-b hover:bg-purple-100"
                                     onClick={() => {
                                         setMobileMenuOpen(false);
                                         setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
                                     }}
                                 >
-                                    Stock Summary
+                                    Size Breakdown
                                 </NavLink>
+
+                                {/* UNRELEASED REPORT */}
+                                <button
+                                    onClick={() =>
+                                        setOpenSubMenu(
+                                            openSubMenu === "unreleased"
+                                                ? ""
+                                                : "unreleased"
+                                        )
+                                    }
+                                    className="w-full flex items-center justify-between px-10 py-3 border-b hover:bg-purple-100"
+                                >
+                                    <span>Unreleased Report</span>
+
+                                    <span>
+                                        {
+                                            openSubMenu === "unreleased"
+                                                ? "-"
+                                                : "+"
+                                        }
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-500 ${openSubMenu === "unreleased"
+                                        ? "max-h-40 opacity-100"
+                                        : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <NavLink
+                                        to="/stock/unreleased"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Unreleased
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/stock/production-pending"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Production Pending
+                                    </NavLink>
+                                </div>
+
                             </div>
 
                         </li>
+                        {/* Receive Report */}
                         <li>
 
                             <button
-                                onClick={() =>
+                                onClick={() => {
                                     setOpenMenu(
-                                        openMenu === "stock"
+                                        openMenu === "receive"
                                             ? ""
-                                            : "stock"
-                                    )
-                                }
-                                className="w-full  flex items-center justify-between px-5 py-4 border-b hover:bg-purple-50"
+                                            : "receive"
+                                    );
+
+                                    setOpenSubMenu("");
+                                    setOpenChildMenu("");
+                                }}
+                                className="font-semibold w-full flex items-center justify-between px-5 py-4 border-b hover:bg-purple-50"
                             >
-                                <span>Stock Report</span>
+                                <span>Receive Report</span>
 
                                 <span>
                                     {
-                                        openMenu === "stock"
+                                        openMenu === "receive"
                                             ? "-"
                                             : "+"
                                     }
@@ -1870,55 +2083,1446 @@ export const Navigation = () => {
 
                             </button>
 
-                            
-
                             <div
-                                className={`overflow-hidden origin-top transition-all duration-1000 ${openMenu === "stock"
-                                        ? " opacity-100"
-                                        : "max-h-0 opacity-0"
+                                className={`overflow-hidden transition-all duration-500 ${openMenu === "receive"
+                                    ? "max-h-[2000px] opacity-100"
+                                    : "max-h-0 opacity-0"
                                     }`}
                             >
+
                                 <NavLink
-                                    to="/dashboard/stock/shop-wise"
+                                    to="/receive/month-wise"
                                     className="block px-10 py-3 border-b hover:bg-purple-100"
                                     onClick={() => {
                                         setMobileMenuOpen(false);
                                         setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
+                                    }}
+                                >
+                                    Month Wise
+                                </NavLink>
+
+                                <NavLink
+                                    to="/receive/shop-wise"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
                                     }}
                                 >
                                     Shop Wise
                                 </NavLink>
 
                                 <NavLink
-                                    to="/stock/summary"
+                                    to="/receive/challan-wise"
                                     className="block px-10 py-3 border-b hover:bg-purple-100"
                                     onClick={() => {
                                         setMobileMenuOpen(false);
                                         setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
                                     }}
                                 >
-                                    Stock Summary
+                                    Challan Wise
                                 </NavLink>
+
+                                {/* PRODUCT GROUP WISE */}
+                                <button
+                                    onClick={() =>
+                                        setOpenSubMenu(
+                                            openSubMenu === "receive-product-group"
+                                                ? ""
+                                                : "receive-product-group"
+                                        )
+                                    }
+                                    className="w-full flex items-center justify-between px-10 py-3 border-b hover:bg-purple-100"
+                                >
+                                    <span>Product Group Wise</span>
+
+                                    <span>
+                                        {
+                                            openSubMenu === "receive-product-group"
+                                                ? "-"
+                                                : "+"
+                                        }
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-500 ${openSubMenu === "receive-product-group"
+                                        ? "max-h-[500px] opacity-100"
+                                        : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <NavLink
+                                        to="/receive/product-group/regular"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Regular
+                                    </NavLink>
+
+                                    {/* TYPE WISE */}
+                                    <button
+                                        onClick={() =>
+                                            setOpenChildMenu(
+                                                openChildMenu === "receive-product-group-type"
+                                                    ? ""
+                                                    : "receive-product-group-type"
+                                            )
+                                        }
+                                        className="w-full flex items-center justify-between px-16 py-3 border-b hover:bg-purple-100"
+                                    >
+                                        <span>Type Wise</span>
+
+                                        <span>
+                                            {
+                                                openChildMenu === "receive-product-group-type"
+                                                    ? "-"
+                                                    : "+"
+                                            }
+                                        </span>
+                                    </button>
+
+                                    <div
+                                        className={`overflow-hidden transition-all duration-500 ${openChildMenu === "receive-product-group-type"
+                                            ? "max-h-40 opacity-100"
+                                            : "max-h-0 opacity-0"
+                                            }`}
+                                    >
+                                        <NavLink
+                                            to="/receive/product-group/type-wise/year-wise"
+                                            className="block px-20 py-3 border-b hover:bg-purple-100"
+                                            onClick={() => {
+                                                setMobileMenuOpen(false);
+                                                setOpenMenu("");
+                                                setOpenSubMenu("");
+                                                setOpenChildMenu("");
+                                            }}
+                                        >
+                                            Year Wise
+                                        </NavLink>
+
+                                        <NavLink
+                                            to="/receive/product-group/type-wise/origin-wise"
+                                            className="block px-20 py-3 border-b hover:bg-purple-100"
+                                            onClick={() => {
+                                                setMobileMenuOpen(false);
+                                                setOpenMenu("");
+                                                setOpenSubMenu("");
+                                                setOpenChildMenu("");
+                                            }}
+                                        >
+                                            Origin Wise
+                                        </NavLink>
+                                    </div>
+
+                                </div>
+
+                                {/* PRODUCT NAME WISE */}
+                                <button
+                                    onClick={() =>
+                                        setOpenSubMenu(
+                                            openSubMenu === "receive-product-name"
+                                                ? ""
+                                                : "receive-product-name"
+                                        )
+                                    }
+                                    className="w-full flex items-center justify-between px-10 py-3 border-b hover:bg-purple-100"
+                                >
+                                    <span>Product Name Wise</span>
+
+                                    <span>
+                                        {
+                                            openSubMenu === "receive-product-name"
+                                                ? "-"
+                                                : "+"
+                                        }
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-500 ${openSubMenu === "receive-product-name"
+                                        ? "max-h-[500px] opacity-100"
+                                        : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <NavLink
+                                        to="/receive/product-name/regular"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Regular
+                                    </NavLink>
+
+                                    {/* TYPE WISE */}
+                                    <button
+                                        onClick={() =>
+                                            setOpenChildMenu(
+                                                openChildMenu === "receive-product-name-type"
+                                                    ? ""
+                                                    : "receive-product-name-type"
+                                            )
+                                        }
+                                        className="w-full flex items-center justify-between px-16 py-3 border-b hover:bg-purple-100"
+                                    >
+                                        <span>Type Wise</span>
+
+                                        <span>
+                                            {
+                                                openChildMenu === "receive-product-name-type"
+                                                    ? "-"
+                                                    : "+"
+                                            }
+                                        </span>
+                                    </button>
+
+                                    <div
+                                        className={`overflow-hidden transition-all duration-500 ${openChildMenu === "receive-product-name-type"
+                                            ? "max-h-40 opacity-100"
+                                            : "max-h-0 opacity-0"
+                                            }`}
+                                    >
+                                        <NavLink
+                                            to="/receive/product-name/type-wise/year-wise"
+                                            className="block px-20 py-3 border-b hover:bg-purple-100"
+                                            onClick={() => {
+                                                setMobileMenuOpen(false);
+                                                setOpenMenu("");
+                                                setOpenSubMenu("");
+                                                setOpenChildMenu("");
+                                            }}
+                                        >
+                                            Year Wise
+                                        </NavLink>
+
+                                        <NavLink
+                                            to="/receive/product-name/type-wise/origin-wise"
+                                            className="block px-20 py-3 border-b hover:bg-purple-100"
+                                            onClick={() => {
+                                                setMobileMenuOpen(false);
+                                                setOpenMenu("");
+                                                setOpenSubMenu("");
+                                                setOpenChildMenu("");
+                                            }}
+                                        >
+                                            Origin Wise
+                                        </NavLink>
+                                    </div>
+
+                                </div>
+
                                 <NavLink
-                                    to="/stock/summary"
+                                    to="/receive/style-wise"
                                     className="block px-10 py-3 border-b hover:bg-purple-100"
                                     onClick={() => {
                                         setMobileMenuOpen(false);
                                         setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
                                     }}
                                 >
-                                    Stock Summary
+                                    Style Wise
                                 </NavLink>
+
                                 <NavLink
-                                    to="/stock/summary"
+                                    to="/receive/supplier-wise"
                                     className="block px-10 py-3 border-b hover:bg-purple-100"
                                     onClick={() => {
                                         setMobileMenuOpen(false);
                                         setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
                                     }}
                                 >
-                                    Stock Summary
+                                    Supplier Wise
                                 </NavLink>
+
+                            </div>
+
+                        </li>
+                        {/* ISSUE REPORT */}
+                        <li>
+
+                            <button
+                                onClick={() => {
+                                    setOpenMenu(
+                                        openMenu === "issue"
+                                            ? ""
+                                            : "issue"
+                                    );
+
+                                    setOpenSubMenu("");
+                                    setOpenChildMenu("");
+                                }}
+                                className="font-semibold w-full flex items-center justify-between px-5 py-4 border-b hover:bg-purple-50"
+                            >
+                                <span>Issue Report</span>
+
+                                <span>
+                                    {
+                                        openMenu === "issue"
+                                            ? "-"
+                                            : "+"
+                                    }
+                                </span>
+
+                            </button>
+
+                            <div
+                                className={`overflow-hidden transition-all duration-500 ${openMenu === "issue"
+                                    ? "max-h-[2000px] opacity-100"
+                                    : "max-h-0 opacity-0"
+                                    }`}
+                            >
+
+                                <NavLink
+                                    to="/issue/month-wise"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
+                                    }}
+                                >
+                                    Month Wise
+                                </NavLink>
+
+                                <NavLink
+                                    to="/issue/shop-wise"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
+                                    }}
+                                >
+                                    Shop Wise
+                                </NavLink>
+
+                                <NavLink
+                                    to="/issue/delivery-challan-wise"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
+                                    }}
+                                >
+                                    Delivery Challan Wise
+                                </NavLink>
+
+                                <NavLink
+                                    to="/issue/product-group-wise"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
+                                    }}
+                                >
+                                    Product Group Wise
+                                </NavLink>
+
+                                <NavLink
+                                    to="/issue/product-name-wise"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
+                                    }}
+                                >
+                                    Product Name Wise
+                                </NavLink>
+
+                                <NavLink
+                                    to="/issue/style-wise"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
+                                    }}
+                                >
+                                    Style Wise
+                                </NavLink>
+
+                                {/* DELIVERY COMPARISON */}
+                                <button
+                                    onClick={() =>
+                                        setOpenSubMenu(
+                                            openSubMenu === "delivery-comparison"
+                                                ? ""
+                                                : "delivery-comparison"
+                                        )
+                                    }
+                                    className="w-full flex items-center justify-between px-10 py-3 border-b hover:bg-purple-100"
+                                >
+                                    <span>Delivery Comparison</span>
+
+                                    <span>
+                                        {
+                                            openSubMenu === "delivery-comparison"
+                                                ? "-"
+                                                : "+"
+                                        }
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-500 ${openSubMenu === "delivery-comparison"
+                                        ? "max-h-20 opacity-100"
+                                        : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <NavLink
+                                        to="/issue/delivery-comparison/shop-wise"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Shop Wise
+                                    </NavLink>
+                                </div>
+
+                            </div>
+
+                        </li>
+                        {/* Return Report  */}
+                        <li>
+
+                            <button
+                                onClick={() => {
+                                    setOpenMenu(
+                                        openMenu === "return"
+                                            ? ""
+                                            : "return"
+                                    );
+
+                                    setOpenSubMenu("");
+                                    setOpenChildMenu("");
+                                }}
+                                className="font-semibold w-full flex items-center justify-between px-5 py-4 border-b hover:bg-purple-50"
+                            >
+                                <span>Return Report</span>
+
+                                <span>
+                                    {
+                                        openMenu === "return"
+                                            ? "-"
+                                            : "+"
+                                    }
+                                </span>
+
+                            </button>
+
+                            <div
+                                className={`overflow-hidden transition-all duration-500 ${openMenu === "return"
+                                    ? "max-h-[2000px] opacity-100"
+                                    : "max-h-0 opacity-0"
+                                    }`}
+                            >
+
+                                <NavLink
+                                    to="/return/month-wise"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
+                                    }}
+                                >
+                                    Month Wise
+                                </NavLink>
+
+                                <NavLink
+                                    to="/return/challan-wise"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
+                                    }}
+                                >
+                                    Challan Wise
+                                </NavLink>
+
+                                {/* PRODUCT NAME WISE */}
+                                <button
+                                    onClick={() =>
+                                        setOpenSubMenu(
+                                            openSubMenu === "return-product-name"
+                                                ? ""
+                                                : "return-product-name"
+                                        )
+                                    }
+                                    className="w-full flex items-center justify-between px-10 py-3 border-b hover:bg-purple-100"
+                                >
+                                    <span>Product Name Wise</span>
+
+                                    <span>
+                                        {
+                                            openSubMenu === "return-product-name"
+                                                ? "-"
+                                                : "+"
+                                        }
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-500 ${openSubMenu === "return-product-name"
+                                        ? "max-h-20 opacity-100"
+                                        : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <NavLink
+                                        to="/return/product-name/regular"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Regular
+                                    </NavLink>
+                                </div>
+
+                                <NavLink
+                                    to="/return/style-wise"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
+                                    }}
+                                >
+                                    Style Wise
+                                </NavLink>
+
+                            </div>
+
+                        </li>
+                        {/* Sale Report */}
+                        <li>
+
+                            <button
+                                onClick={() => {
+                                    setOpenMenu(openMenu === "sale" ? "" : "sale");
+                                    setOpenSubMenu("");
+                                    setOpenChildMenu("");
+                                }}
+                                className="font-semibold w-full flex items-center justify-between px-5 py-4 border-b hover:bg-purple-50"
+                            >
+                                <span>Sale Report</span>
+
+                                <span>
+                                    {
+                                        openMenu === "sale"
+                                            ? "-"
+                                            : "+"
+                                    }
+                                </span>
+
+                            </button>
+
+                            <div
+                                className={`overflow-hidden transition-all duration-500 ${openMenu === "sale"
+                                    ? "max-h-[5000px] opacity-100"
+                                    : "max-h-0 opacity-0"
+                                    }`}
+                            >
+
+                                <NavLink
+                                    to="/sale/home"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
+                                    }}
+                                >
+                                    HOME
+                                </NavLink>
+
+                                {/* SHOP WISE */}
+                                <button
+                                    onClick={() =>
+                                        setOpenSubMenu(
+                                            openSubMenu === "shop-wise"
+                                                ? ""
+                                                : "shop-wise"
+                                        )
+                                    }
+                                    className="w-full flex items-center justify-between px-10 py-3 border-b hover:bg-purple-100"
+                                >
+                                    <span>Shop Wise</span>
+
+                                    <span>
+                                        {
+                                            openSubMenu === "shop-wise"
+                                                ? "-"
+                                                : "+"
+                                        }
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-500 ${openSubMenu === "shop-wise"
+                                        ? "max-h-[500px] opacity-100"
+                                        : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <NavLink
+                                        to="/sale/shop/date-month-wise"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Date & Month Wise
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/shop/day-wise-cross-table"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Day Wise Cross Table
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/shop/day-wise-cross-table-no-bag"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Day Wise Cross Table (Without Shopping Bag)
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/shop/invoice-wise"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Invoice Wise
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/shop/regular-report"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Regular Report
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/shop/sale-summary"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Sale Summary
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/shop/sale-summary-stock"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Sale Summary With Stock (Without Shopping Bag)
+                                    </NavLink>
+                                </div>
+
+                                {/* PRODUCT GROUP WISE */}
+                                <button
+                                    onClick={() =>
+                                        setOpenSubMenu(
+                                            openSubMenu === "product-group"
+                                                ? ""
+                                                : "product-group"
+                                        )
+                                    }
+                                    className="w-full flex items-center justify-between px-10 py-3 border-b hover:bg-purple-100"
+                                >
+                                    <span>Product Group Wise</span>
+
+                                    <span>
+                                        {
+                                            openSubMenu === "product-group"
+                                                ? "-"
+                                                : "+"
+                                        }
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-500 ${openSubMenu === "product-group"
+                                        ? "max-h-[200px] opacity-100"
+                                        : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <NavLink
+                                        to="/sale/product-group/regular"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Regular
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/product-group/multi-select"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Regular (Multi Select)
+                                    </NavLink>
+                                </div>
+
+                                {/* PRODUCT NAME WISE */}
+                                <button
+                                    onClick={() =>
+                                        setOpenSubMenu(
+                                            openSubMenu === "product-name"
+                                                ? ""
+                                                : "product-name"
+                                        )
+                                    }
+                                    className="w-full flex items-center justify-between px-10 py-3 border-b hover:bg-purple-100"
+                                >
+                                    <span>Product Name Wise</span>
+
+                                    <span>
+                                        {
+                                            openSubMenu === "product-name"
+                                                ? "-"
+                                                : "+"
+                                        }
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-500 ${openSubMenu === "product-name"
+                                        ? "max-h-[200px] opacity-100"
+                                        : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <NavLink
+                                        to="/sale/product-name/style-wise"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Style Wise
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/product-name/with-size"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        With Size
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/product-name/without-size"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Without Size
+                                    </NavLink>
+                                </div>
+
+                                <NavLink
+                                    to="/sale/style-wise"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
+                                    }}
+                                >
+                                    Style Wise
+                                </NavLink>
+
+                                <NavLink
+                                    to="/sale/daily-sales-report"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
+                                    }}
+                                >
+                                    Daily Sales Report
+                                </NavLink>
+
+                                {/* CIRCULAR WISE */}
+                                <button
+                                    onClick={() =>
+                                        setOpenSubMenu(
+                                            openSubMenu === "circular-wise"
+                                                ? ""
+                                                : "circular-wise"
+                                        )
+                                    }
+                                    className="w-full flex items-center justify-between px-10 py-3 border-b hover:bg-purple-100"
+                                >
+                                    <span>Circular Wise</span>
+
+                                    <span>
+                                        {
+                                            openSubMenu === "circular-wise"
+                                                ? "-"
+                                                : "+"
+                                        }
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-500 ${openSubMenu === "circular-wise"
+                                        ? "max-h-[200px] opacity-100"
+                                        : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <NavLink
+                                        to="/sale/circular/process-circular"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Process Circular
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/circular/report"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Circular Report
+                                    </NavLink>
+                                </div>
+
+                                {/* SALE THROUGH */}
+                                <button
+                                    onClick={() =>
+                                        setOpenSubMenu(
+                                            openSubMenu === "sale-through"
+                                                ? ""
+                                                : "sale-through"
+                                        )
+                                    }
+                                    className="w-full flex items-center justify-between px-10 py-3 border-b hover:bg-purple-100"
+                                >
+                                    <span>Sale Through</span>
+
+                                    <span>
+                                        {
+                                            openSubMenu === "sale-through"
+                                                ? "-"
+                                                : "+"
+                                        }
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-500 ${openSubMenu === "sale-through"
+                                        ? "max-h-[300px] opacity-100"
+                                        : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <NavLink
+                                        to="/sale/through/analysis"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Receive, Sale Analysis
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/through/product-group"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Product Group Wise
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/through/product-name"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Product Name Wise
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/through/style-wise"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Style Wise
+                                    </NavLink>
+                                </div>
+
+                                {/* DISCOUNT REPORT */}
+                                <button
+                                    onClick={() =>
+                                        setOpenSubMenu(
+                                            openSubMenu === "discount-report"
+                                                ? ""
+                                                : "discount-report"
+                                        )
+                                    }
+                                    className="w-full flex items-center justify-between px-10 py-3 border-b hover:bg-purple-100"
+                                >
+                                    <span>Discount Report</span>
+
+                                    <span>
+                                        {
+                                            openSubMenu === "discount-report"
+                                                ? "-"
+                                                : "+"
+                                        }
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-500 ${openSubMenu === "discount-report"
+                                        ? "max-h-[300px] opacity-100"
+                                        : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <NavLink
+                                        to="/sale/discount/wise-sale"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Discount Wise Sale
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/discount/percentage-wise"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Discount(%) Wise Sale
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/discount/customer"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Customer Discount
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/discount/staff-special"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Staff/Special Discount
+                                    </NavLink>
+                                </div>
+
+                                {/* COMMISSION REPORT */}
+                                <button
+                                    onClick={() =>
+                                        setOpenSubMenu(
+                                            openSubMenu === "commission-report"
+                                                ? ""
+                                                : "commission-report"
+                                        )
+                                    }
+                                    className="w-full flex items-center justify-between px-10 py-3 border-b hover:bg-purple-100"
+                                >
+                                    <span>Commission Report</span>
+
+                                    <span>
+                                        {
+                                            openSubMenu === "commission-report"
+                                                ? "-"
+                                                : "+"
+                                        }
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-500 ${openSubMenu === "commission-report"
+                                        ? "max-h-[300px] opacity-100"
+                                        : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <NavLink
+                                        to="/sale/commission/franchise"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Franchise Commission
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/commission/supplier-rmg"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Supplier Comm (RMG Product)
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/commission/supplier-non-rmg"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Supplier Comm (Non RMG Product)
+                                    </NavLink>
+                                </div>
+
+                                {/* DESIGNER REPORT */}
+                                <button
+                                    onClick={() =>
+                                        setOpenSubMenu(
+                                            openSubMenu === "designer-report"
+                                                ? ""
+                                                : "designer-report"
+                                        )
+                                    }
+                                    className="w-full flex items-center justify-between px-10 py-3 border-b hover:bg-purple-100"
+                                >
+                                    <span>Designer Report</span>
+
+                                    <span>
+                                        {
+                                            openSubMenu === "designer-report"
+                                                ? "-"
+                                                : "+"
+                                        }
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-500 ${openSubMenu === "designer-report"
+                                        ? "max-h-[200px] opacity-100"
+                                        : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <NavLink
+                                        to="/sale/designer/regular-report"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Regular Report
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/designer/performance"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Designer Performance Report
+                                    </NavLink>
+                                </div>
+
+                                <NavLink
+                                    to="/sale/salesmen-performance"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
+                                    }}
+                                >
+                                    Salesmen Performance
+                                </NavLink>
+
+                                <NavLink
+                                    to="/sale/best-sale"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
+                                    }}
+                                >
+                                    Best Sale
+                                </NavLink>
+
+                                {/* GLOBAL REPORT */}
+                                <button
+                                    onClick={() =>
+                                        setOpenSubMenu(
+                                            openSubMenu === "global-report"
+                                                ? ""
+                                                : "global-report"
+                                        )
+                                    }
+                                    className="w-full flex items-center justify-between px-10 py-3 border-b hover:bg-purple-100"
+                                >
+                                    <span>Global Report</span>
+
+                                    <span>
+                                        {
+                                            openSubMenu === "global-report"
+                                                ? "-"
+                                                : "+"
+                                        }
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-500 ${openSubMenu === "global-report"
+                                        ? "max-h-[300px] opacity-100"
+                                        : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <NavLink
+                                        to="/sale/global/product-wise"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Product Wise
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/global/performance-report"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Product Performance Report
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/global/performance-report-2"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Product Performance Report 2
+                                    </NavLink>
+                                </div>
+
+                                {/* SALE COMPARISON */}
+                                <button
+                                    onClick={() =>
+                                        setOpenSubMenu(
+                                            openSubMenu === "sale-comparison"
+                                                ? ""
+                                                : "sale-comparison"
+                                        )
+                                    }
+                                    className="w-full flex items-center justify-between px-10 py-3 border-b hover:bg-purple-100"
+                                >
+                                    <span>Sale Comparison</span>
+
+                                    <span>
+                                        {
+                                            openSubMenu === "sale-comparison"
+                                                ? "-"
+                                                : "+"
+                                        }
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-500 ${openSubMenu === "sale-comparison"
+                                        ? "max-h-[300px] opacity-100"
+                                        : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <NavLink
+                                        to="/sale/comparison/day-wise"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Day Wise
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/comparison/month-wise"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Month Wise
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/comparison/shop-wise"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Shop Wise
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/comparison/group-wise"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Group Wise
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/sale/comparison/product-wise"
+                                        className="block px-16 py-3 border-b hover:bg-purple-100"
+                                        onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setOpenMenu("");
+                                            setOpenSubMenu("");
+                                            setOpenChildMenu("");
+                                        }}
+                                    >
+                                        Product Wise
+                                    </NavLink>
+                                </div>
+
+                            </div>
+
+                        </li>
+                        {/* Others */}
+                        <li>
+
+                            <button
+                                onClick={() => {
+                                    setOpenMenu(
+                                        openMenu === "Others"
+                                            ? ""
+                                            : "Others"
+                                    );
+
+                                    setOpenSubMenu("");
+                                    setOpenChildMenu("");
+                                }}
+                                className="font-semibold w-full flex items-center justify-between px-5 py-4 border-b hover:bg-purple-50"
+                            >
+                                <span>Others</span>
+
+                                <span>
+                                    {
+                                        openMenu === "Others"
+                                            ? "-"
+                                            : "+"
+                                    }
+                                </span>
+
+                            </button>
+
+                            <div
+                                className={`overflow-hidden transition-all duration-500 ${openMenu === "Others"
+                                        ? "max-h-[500px] opacity-100"
+                                        : "max-h-0 opacity-0"
+                                    }`}
+                            >
+
+                                <NavLink
+                                    to="/dashboard/other/shoplist"
+                                    className="block px-10 py-3 border-b hover:bg-purple-100"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setOpenMenu("");
+                                        setOpenSubMenu("");
+                                        setOpenChildMenu("");
+                                        setBreadcrumb("Others > Shop List");
+                                    }}
+                                >
+                                    Shop List
+                                </NavLink>
+
                             </div>
 
                         </li>

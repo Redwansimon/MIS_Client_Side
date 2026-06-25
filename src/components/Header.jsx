@@ -22,7 +22,7 @@ export const Header = () => {
 };
 
     return (
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center ">
             <div className='border-b-[1px]  '>
 
  

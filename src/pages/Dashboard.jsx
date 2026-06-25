@@ -120,12 +120,12 @@ useEffect(() => {
             <Navigation />
 
             {/* PAGE CONTENT */}
-            <main>
+            <main className='flex-1'>
                 <Outlet />
             </main>
 
             {/* FOOTER */}
-            <footer className="px-8 py-4  text-xs font-semibold text-purple-600">
+            <footer className="px-8 py-4   text-xs font-semibold text-purple-600">
                 POWERED BY IT@MBRELLA
             </footer>
 
