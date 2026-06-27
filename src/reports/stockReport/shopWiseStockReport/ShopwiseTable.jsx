@@ -89,15 +89,27 @@
 // };
 
 
-// import React from "react";
+// import React, { useRef } from "react";
+// import { useVirtualizer } from "@tanstack/react-virtual";
 
 // export const ShopwiseTable = ({
 //   reportData = [],
 //   selectedShop,
-//   currentPage,
-//   totalPages,
-//   onPageChange,
+//   loadingMore,
+//   allLoaded,
+//   loadedRows,
 // }) => {
+//   const parentRef = useRef(null);
+
+//   const rowVirtualizer = useVirtualizer({
+//     count: reportData.length,
+//     getScrollElement: () => parentRef.current,
+//     estimateSize: () => 28, // প্রতিটা row এর height (px)
+//     overscan: 20,           // extra rows buffer
+//   });
+
+//   const virtualItems = rowVirtualizer.getVirtualItems();
+
 //   return (
 //     <>
 //       {reportData.length > 0 ? (
@@ -113,79 +125,90 @@
 //             </h2>
 //           </div>
 
-//           {/* TABLE */}
-//           <div className="overflow-x-auto mt-6">
-//             <table className="w-full text-xs border">
+//           {/* STATUS */}
+//           {loadingMore && (
+//             <div className="flex items-center gap-3 mt-4 px-2 text-xs text-purple-600 font-semibold">
+//               <div className="w-3 h-3 rounded-full bg-purple-600 animate-bounce" />
+//               <span>Loading... {loadedRows.toLocaleString()} rows loaded</span>
+//             </div>
+//           )}
+//           {allLoaded && (
+//             <div className="mt-4 px-2 text-xs text-green-600 font-semibold">
+//               ✓ All data loaded — {loadedRows.toLocaleString()} rows
+//             </div>
+//           )}
+
+//           {/* FIXED HEADER TABLE */}
+//           <div className="overflow-x-auto mt-4">
+//             <table className="w-full text-xs border-collapse">
 //               <thead>
 //                 <tr className="bg-slate-100">
-//                   <th colSpan={13} className="border p-2 text-left">
-//                     SHOP NAME: {selectedShop}
+//                   <th colSpan={14} className="border p-2 text-left">
+//                     SHOP NAME: {selectedShop === "ALL" ? "ALL SHOPS" : selectedShop}
 //                   </th>
 //                 </tr>
 //                 <tr className="bg-slate-200">
-//                   <th className="border p-2">BARCODE</th>
-//                   <th className="border p-2">CATEGORY</th>
-//                   <th className="border p-2">SUB CATEGORY</th>
-//                   <th className="border p-2">SUB SUBCATEGORY</th>
-//                   <th className="border p-2">STYLE CODE</th>
-//                   <th className="border p-2">COLOR</th>
-//                   <th className="border p-2">SIZE</th>
-//                   <th className="border p-2">BRAND</th>
-//                   <th className="border p-2">SUPPLIER</th>
-//                   <th className="border p-2">STORE</th>
-//                   <th className="border p-2">CPU</th>
-//                   <th className="border p-2">MRP</th>
-//                   <th className="border p-2">BAL QTY</th>
+//                   {["SL","BARCODE","CATEGORY","SUB CATEGORY","SUB SUBCATEGORY",
+//                     "STYLE CODE","COLOR","SIZE","BRAND","SUPPLIER","STORE",
+//                     "CPU","MRP","BAL QTY"].map((h) => (
+//                     <th key={h} className="border p-2 whitespace-nowrap">{h}</th>
+//                   ))}
 //                 </tr>
 //               </thead>
-
-//               <tbody>
-//                 {reportData.map((row, index) => (
-//                   <tr key={index} className="hover:bg-slate-100">
-//                     <td className="border p-1">{row.BARCODE}</td>
-//                     <td className="border p-1">{row.CATEGORY}</td>
-//                     <td className="border p-1">{row.SUB_CATEGORY}</td>
-//                     <td className="border p-1">{row.SUB_SUBCATEGORY}</td>
-//                     <td className="border p-1">{row.STYLE_CODE}</td>
-//                     <td className="border p-1">{row.COLOR}</td>
-//                     <td className="border p-1">{row.SIZE}</td>
-//                     <td className="border p-1">{row.BRAND}</td>
-//                     <td className="border p-1">{row.SUPNAME}</td>
-//                     <td className="border p-1">{row.STORE_NAME}</td>
-//                     <td className="border p-1">{row.CPU}</td>
-//                     <td className="border p-1">{row.MRP}</td>
-//                     <td className="border p-1">{row.BALQTY}</td>
-//                   </tr>
-//                 ))}
-//               </tbody>
 //             </table>
 //           </div>
 
-//           {/* PAGINATION */}
-//           <div className="flex items-center justify-between mt-4 px-2 pb-6">
-
-//             <p className="text-xs text-slate-500">
-//               Page {currentPage} of {totalPages}
-//             </p>
-
-//             <div className="flex gap-2">
-//               <button
-//                 onClick={() => onPageChange(currentPage - 1)}
-//                 disabled={currentPage === 1}
-//                 className="px-3 py-1 border rounded text-xs disabled:opacity-40 hover:bg-purple-50"
-//               >
-//                 Previous
-//               </button>
-
-//               <button
-//                 onClick={() => onPageChange(currentPage + 1)}
-//                 disabled={currentPage === totalPages}
-//                 className="px-3 py-1 border rounded text-xs disabled:opacity-40 hover:bg-purple-50"
-//               >
-//                 Next
-//               </button>
+//           {/* VIRTUAL SCROLL BODY */}
+//           <div
+//             ref={parentRef}
+//             className="overflow-auto border"
+//             style={{ height: "600px" }} // fixed height — এটা দরকার
+//           >
+//             <div
+//               style={{
+//                 height: `${rowVirtualizer.getTotalSize()}px`,
+//                 position: "relative",
+//               }}
+//             >
+//               {virtualItems.map((virtualRow) => {
+//                 const row = reportData[virtualRow.index];
+//                 return (
+//                   <div
+//                     key={virtualRow.key}
+//                     data-index={virtualRow.index}
+//                     ref={rowVirtualizer.measureElement}
+//                     style={{
+//                       position: "absolute",
+//                       top: 0,
+//                       left: 0,
+//                       width: "100%",
+//                       transform: `translateY(${virtualRow.start}px)`,
+//                     }}
+//                   >
+//                     <table className="w-full text-xs border-collapse">
+//                       <tbody>
+//                         <tr className="hover:bg-slate-100">
+//                           <td className="border p-1 text-center w-10">{virtualRow.index + 1}</td>
+//                           <td className="border p-1">{row.BARCODE}</td>
+//                           <td className="border p-1">{row.CATEGORY}</td>
+//                           <td className="border p-1">{row.SUB_CATEGORY}</td>
+//                           <td className="border p-1">{row.SUB_SUBCATEGORY}</td>
+//                           <td className="border p-1">{row.STYLE_CODE}</td>
+//                           <td className="border p-1">{row.COLOR}</td>
+//                           <td className="border p-1">{row.SIZE}</td>
+//                           <td className="border p-1">{row.BRAND}</td>
+//                           <td className="border p-1">{row.SUPNAME}</td>
+//                           <td className="border p-1">{row.STORE_NAME}</td>
+//                           <td className="border p-1">{row.CPU}</td>
+//                           <td className="border p-1">{row.MRP}</td>
+//                           <td className="border p-1">{row.BALQTY}</td>
+//                         </tr>
+//                       </tbody>
+//                     </table>
+//                   </div>
+//                 );
+//               })}
 //             </div>
-
 //           </div>
 //         </>
 //       ) : (
@@ -197,53 +220,48 @@
 //   );
 // };
 
-// import React, { useEffect, useRef } from "react";
+
+// import React, { useRef, useState } from "react";
+// import { useVirtualizer } from "@tanstack/react-virtual";
+
 
 // export const ShopwiseTable = ({
 //   reportData = [],
 //   selectedShop,
-//   currentPage,
-//   totalPages,
 //   loadingMore,
-//   onLoadMore,
+//   allLoaded,
+//   loadedRows,
 // }) => {
+//   const parentRef = useRef(null);
+//   const [pdfLoading, setPdfLoading] = useState(false);
 
-//   // এই ref টা table এর একদম শেষে একটা div এ বসাবো
-//   const observerRef = useRef(null);
+//   // ─── EXCEL DOWNLOAD ───────────────────────────────────────
+//   // Frontend Excel button
+// const downloadExcel = () => {
+//   const url = `http://localhost:5000/api/stockreports/download/excel?shop=${selectedShop}`;
+//   window.open(url, "_blank");
+// };
+//   // ─── PDF DOWNLOAD ─────────────────────────────────────────
+//   const downloadPDF = () => {
+//   // সরাসরি server এর link এ যাও — browser auto download করবে
+//   const url = `http://localhost:5000/api/stockreports/download/pdf?shop=${selectedShop}`;
+//   window.open(url, "_blank");
+// };
+//   // ─── VIRTUALIZER ──────────────────────────────────────────
+//   const rowVirtualizer = useVirtualizer({
+//     count: reportData.length,
+//     getScrollElement: () => parentRef.current,
+//     estimateSize: () => 28,
+//     overscan: 20,
+//   });
 
-//   useEffect(() => {
-
-//     // আগের observer থাকলে disconnect করো
-//     if (observerRef.current) observerRef.current.disconnect();
-
-//     // শেষ element টা খোঁজো
-//     const sentinel = document.getElementById("scroll-sentinel");
-//     if (!sentinel) return;
-
-//     // IntersectionObserver — sentinel দেখা গেলে আরো data load করো
-//     observerRef.current = new IntersectionObserver(
-//       (entries) => {
-//         const first = entries[0];
-//         if (first.isIntersecting && currentPage < totalPages && !loadingMore) {
-//           onLoadMore(currentPage + 1);
-//         }
-//       },
-//       { threshold: 1.0 }
-//     );
-
-//     observerRef.current.observe(sentinel);
-
-//     return () => {
-//       if (observerRef.current) observerRef.current.disconnect();
-//     };
-
-//   }, [currentPage, totalPages, loadingMore, onLoadMore]);
+//   const virtualItems = rowVirtualizer.getVirtualItems();
 
 //   return (
 //     <>
 //       {reportData.length > 0 ? (
 //         <>
-//           {/* HEADER */}
+//           {/* PAGE HEADER */}
 //           <div className="text-center mt-6">
 //             <h1 className="text-2xl font-bold">MBRELLA</h1>
 //             <p className="text-xs text-slate-500">
@@ -254,73 +272,120 @@
 //             </h2>
 //           </div>
 
-//           {/* TABLE */}
-//           <div className="overflow-x-auto mt-6">
-//             <table className="w-full text-xs border">
-//               <thead>
-//                 <tr className="bg-slate-100">
-//   <th colSpan={13} className="border p-2 text-left">
-//     SHOP NAME: {selectedShop === "ALL" ? "ALL SHOPS" : selectedShop}
-//   </th>
-// </tr>
+//           {/* STATUS + DOWNLOAD BUTTONS */}
+//           <div className="flex items-center justify-between mt-4 px-2">
+//             <div>
+//               {loadingMore && (
+//                 <div className="flex items-center gap-2 text-xs text-purple-600 font-semibold">
+//                   <div className="w-3 h-3 rounded-full bg-purple-600 animate-bounce" />
+//                   <span>Loading... {loadedRows.toLocaleString()} rows loaded</span>
+//                 </div>
+//               )}
+//               {allLoaded && (
+//                 <div className="text-xs text-green-600 font-semibold">
+//                   ✓ All data loaded — {loadedRows.toLocaleString()} rows
+//                 </div>
+//               )}
+//             </div>
 
+//             {allLoaded && (
+//               <div className="flex gap-2">
+//                 <button
+//                   onClick={downloadExcel}
+//                   className="flex items-center gap-1 px-4 py-2 bg-green-600 text-white text-xs rounded hover:bg-green-700"
+//                 >
+//                   ⬇ Excel
+//                 </button>
+//                 <button
+//                   onClick={downloadPDF}
+//                   disabled={pdfLoading}
+//                   className="flex items-center gap-1 px-4 py-2 bg-red-600 text-white text-xs rounded hover:bg-red-700 disabled:opacity-60"
+//                 >
+//                   {pdfLoading ? "Generating..." : "⬇ PDF"}
+//                 </button>
+//               </div>
+//             )}
+//           </div>
+
+//           {/* SINGLE TABLE — header sticky, body virtual */}
+//           <div
+//             ref={parentRef}
+//             className="overflow-auto mt-4 border"
+//             style={{ height: "1000px" }}
+//           >
+//             <table className="text-xs border-collapse whitespace-nowrap" style={{ minWidth: "100%" }}>
+
+//               {/* STICKY HEADER */}
+//               <thead className="sticky top-0 z-10">
+//                 <tr className="bg-slate-100">
+//                   <th colSpan={14} className="border p-2 text-left">
+//                     SHOP NAME: {selectedShop === "ALL" ? "ALL SHOPS" : selectedShop}
+//                   </th>
+//                 </tr>
 //                 <tr className="bg-slate-200">
-//                   <th className="border p-2">SERIAL</th>
-//                   <th className="border p-2">BARCODE</th>
-//                   <th className="border p-2">CATEGORY</th>
-//                   <th className="border p-2">SUB CATEGORY</th>
-//                   <th className="border p-2">SUB SUBCATEGORY</th>
-//                   <th className="border p-2">STYLE CODE</th>
-//                   <th className="border p-2">COLOR</th>
-//                   <th className="border p-2">SIZE</th>
-//                   <th className="border p-2">BRAND</th>
-//                   <th className="border p-2">SUPPLIER</th>
-//                   <th className="border p-2">STORE</th>
-//                   <th className="border p-2">CPU</th>
-//                   <th className="border p-2">MRP</th>
-//                   <th className="border p-2">BAL QTY</th>
+//                   {[
+//                     "SL", "BARCODE", "CATEGORY", "SUB CATEGORY", "SUB SUBCATEGORY",
+//                     "STYLE CODE", "COLOR", "SIZE", "BRAND", "SUPPLIER",
+//                     "STORE", "CPU", "MRP", "BAL QTY"
+//                   ].map((h) => (
+//                     <th key={h} className="border p-2">{h}</th>
+//                   ))}
 //                 </tr>
 //               </thead>
 
 //               <tbody>
-//                 {reportData.map((row, index) => (
-//                   <tr key={index} className="hover:bg-slate-100">
-//                     <td className="border p-1">{index + 1}</td>
-//                     <td className="border p-1">{row.BARCODE}</td>
-//                     <td className="border p-1">{row.CATEGORY}</td>
-//                     <td className="border p-1">{row.SUB_CATEGORY}</td>
-//                     <td className="border p-1">{row.SUB_SUBCATEGORY}</td>
-//                     <td className="border p-1">{row.STYLE_CODE}</td>
-//                     <td className="border p-1">{row.COLOR}</td>
-//                     <td className="border p-1">{row.SIZE}</td>
-//                     <td className="border p-1">{row.BRAND}</td>
-//                     <td className="border p-1">{row.SUPNAME}</td>
-//                     <td className="border p-1">{row.STORE_NAME}</td>
-//                     <td className="border p-1">{row.CPU}</td>
-//                     <td className="border p-1">{row.MRP}</td>
-//                     <td className="border p-1">{row.BALQTY}</td>
+//                 {/* Top spacer — scroll এর আগের rows এর height */}
+//                 {virtualItems.length > 0 && (
+//                   <tr>
+//                     <td
+//                       colSpan={14}
+//                       style={{ height: `${virtualItems[0].start}px`, padding: 0, border: "none" }}
+//                     />
 //                   </tr>
-//                 ))}
+//                 )}
+
+//                 {/* Visible rows only */}
+//                 {virtualItems.map((virtualRow) => {
+//                   const row = reportData[virtualRow.index];
+//                   return (
+//                     <tr key={virtualRow.key} className="hover:bg-slate-100">
+//                       <td className="border p-1 text-center">{virtualRow.index + 1}</td>
+//                       <td className="border p-1">{row.BARCODE}</td>
+//                       <td className="border p-1">{row.CATEGORY}</td>
+//                       <td className="border p-1">{row.SUB_CATEGORY}</td>
+//                       <td className="border p-1">{row.SUB_SUBCATEGORY}</td>
+//                       <td className="border p-1">{row.STYLE_CODE}</td>
+//                       <td className="border p-1">{row.COLOR}</td>
+//                       <td className="border p-1">{row.SIZE}</td>
+//                       <td className="border p-1">{row.BRAND}</td>
+//                       <td className="border p-1">{row.SUPNAME}</td>
+//                       <td className="border p-1">{row.STORE_NAME}</td>
+//                       <td className="border p-1">{row.CPU}</td>
+//                       <td className="border p-1">{row.MRP}</td>
+//                       <td className="border p-1">{row.BALQTY}</td>
+//                     </tr>
+//                   );
+//                 })}
+
+//                 {/* Bottom spacer — scroll এর পরের rows এর height */}
+//                 {virtualItems.length > 0 && (
+//                   <tr>
+//                     <td
+//                       colSpan={14}
+//                       style={{
+//                         height: `${
+//                           rowVirtualizer.getTotalSize() -
+//                           (virtualItems[virtualItems.length - 1]?.end ?? 0)
+//                         }px`,
+//                         padding: 0,
+//                         border: "none",
+//                       }}
+//                     />
+//                   </tr>
+//                 )}
 //               </tbody>
 //             </table>
 //           </div>
-
-//           {/* SENTINEL — এই div দেখা গেলে নতুন data load হবে */}
-//           <div id="scroll-sentinel" className="h-10 mt-2" />
-
-//           {/* LOADING MORE INDICATOR */}
-//           {loadingMore && (
-//             <div className="text-center py-4 text-xs text-purple-600 font-semibold animate-pulse">
-//               Loading more data...
-//             </div>
-//           )}
-
-//           {/* DONE */}
-//           {!loadingMore && currentPage >= totalPages && (
-//             <div className="text-center py-4 text-xs text-slate-400">
-//               All data loaded — {reportData.length} rows
-//             </div>
-//           )}
 //         </>
 //       ) : (
 //         <div className="text-center mt-10 text-slate-400 text-sm">
@@ -331,7 +396,26 @@
 //   );
 // };
 
-import React from "react";
+
+import React, { useRef } from "react";
+import { useVirtualizer } from "@tanstack/react-virtual";
+
+const TABLE_HEADERS = [
+  "SL",
+  "BARCODE",
+  "CATEGORY",
+  "SUB CATEGORY",
+  "SUB SUBCATEGORY",
+  "STYLE CODE",
+  "COLOR",
+  "SIZE",
+  "BRAND",
+  "SUPPLIER",
+  "STORE",
+  "CPU",
+  "MRP",
+  "BAL QTY",
+];
 
 export const ShopwiseTable = ({
   reportData = [],
@@ -340,82 +424,175 @@ export const ShopwiseTable = ({
   allLoaded,
   loadedRows,
 }) => {
+  const parentRef = useRef(null);
+
+  // Excel Download
+  const downloadExcel = () => {
+    window.open(
+      `http://localhost:5000/api/stockreports/download/excel?shop=${selectedShop}`,
+      "_blank"
+    );
+  };
+
+  // PDF Download
+  const downloadPDF = () => {
+    window.open(
+      `http://localhost:5000/api/stockreports/download/pdf?shop=${selectedShop}`,
+      "_blank"
+    );
+  };
+
+  // TanStack Virtual
+  const rowVirtualizer = useVirtualizer({
+    count: reportData.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 28,
+    overscan: 20,
+  });
+
+  const virtualItems = rowVirtualizer.getVirtualItems();
+
   return (
     <>
       {reportData.length > 0 ? (
         <>
-          {/* HEADER */}
+          {/* REPORT HEADER */}
           <div className="text-center mt-6">
             <h1 className="text-2xl font-bold">MBRELLA</h1>
+
             <p className="text-xs text-slate-500">
               HOUSE: 19, ROAD: 03, SECTOR: 03, UTTARA, DHAKA
             </p>
+
             <h2 className="text-lg font-bold mt-3 uppercase">
               Shop Wise Stock Report
             </h2>
           </div>
 
-          {/* LOADING MORE INDICATOR */}
-          {loadingMore && (
-            <div className="flex items-center gap-3 mt-4 px-2 text-xs text-purple-600 font-semibold">
-              <div className="w-3 h-3 rounded-full bg-purple-600 animate-bounce" />
-              <span>Loading data in background... {loadedRows} rows loaded</span>
-            </div>
-          )}
+          {/* STATUS & DOWNLOAD */}
+          <div className="flex items-center justify-between mt-4 px-2">
+            <div>
+              {loadingMore && (
+                <div className="flex items-center gap-2 text-xs text-purple-600 font-semibold">
+                  <div className="w-3 h-3 rounded-full bg-purple-600 animate-bounce"></div>
 
-          {/* ALL LOADED */}
-          {allLoaded && (
-            <div className="mt-4 px-2 text-xs text-green-600 font-semibold">
-              ✓ All data loaded — {loadedRows} rows
+                  <span>
+                    Loading... {loadedRows.toLocaleString()} rows loaded
+                  </span>
+                </div>
+              )}
+
+              {allLoaded && (
+                <div className="text-xs text-green-600 font-semibold">
+                  ✓ All data loaded ({loadedRows.toLocaleString()} rows)
+                </div>
+              )}
             </div>
-          )}
+
+            {allLoaded && (
+              <div className="flex gap-2">
+                <button
+                  onClick={downloadExcel}
+                  className="px-4 py-2 bg-green-600 text-white text-xs rounded hover:bg-green-700"
+                >
+                  ⬇ Excel
+                </button>
+
+                <button
+                  onClick={downloadPDF}
+                  className="px-4 py-2 bg-red-600 text-white text-xs rounded hover:bg-red-700"
+                >
+                  ⬇ PDF
+                </button>
+              </div>
+            )}
+          </div>
 
           {/* TABLE */}
-          <div className="overflow-x-auto mt-4">
-            <table className="w-full text-xs border">
-              <thead>
+          <div
+            ref={parentRef}
+            className="overflow-auto mt-4 border"
+            style={{ height: "1000px" }}
+          >
+            <table
+              className="text-xs border-collapse whitespace-nowrap"
+              style={{ minWidth: "100%" }}
+            >
+              {/* HEADER */}
+              <thead className="sticky top-0 z-10">
                 <tr className="bg-slate-100">
                   <th colSpan={14} className="border p-2 text-left">
-                    SHOP NAME: {selectedShop === "ALL" ? "ALL SHOPS" : selectedShop}
+                    SHOP NAME :{" "}
+                    {selectedShop === "ALL" ? "ALL SHOPS" : selectedShop}
                   </th>
                 </tr>
+
                 <tr className="bg-slate-200">
-                  <th className="border p-2">SL</th>
-                  <th className="border p-2">BARCODE</th>
-                  <th className="border p-2">CATEGORY</th>
-                  <th className="border p-2">SUB CATEGORY</th>
-                  <th className="border p-2">SUB SUBCATEGORY</th>
-                  <th className="border p-2">STYLE CODE</th>
-                  <th className="border p-2">COLOR</th>
-                  <th className="border p-2">SIZE</th>
-                  <th className="border p-2">BRAND</th>
-                  <th className="border p-2">SUPPLIER</th>
-                  <th className="border p-2">STORE</th>
-                  <th className="border p-2">CPU</th>
-                  <th className="border p-2">MRP</th>
-                  <th className="border p-2">BAL QTY</th>
+                  {TABLE_HEADERS.map((header) => (
+                    <th key={header} className="border p-2">
+                      {header}
+                    </th>
+                  ))}
                 </tr>
               </thead>
 
               <tbody>
-                {reportData.map((row, index) => (
-                  <tr key={index} className="hover:bg-slate-100">
-                    <td className="border p-1 text-center">{index + 1}</td>
-                    <td className="border p-1">{row.BARCODE}</td>
-                    <td className="border p-1">{row.CATEGORY}</td>
-                    <td className="border p-1">{row.SUB_CATEGORY}</td>
-                    <td className="border p-1">{row.SUB_SUBCATEGORY}</td>
-                    <td className="border p-1">{row.STYLE_CODE}</td>
-                    <td className="border p-1">{row.COLOR}</td>
-                    <td className="border p-1">{row.SIZE}</td>
-                    <td className="border p-1">{row.BRAND}</td>
-                    <td className="border p-1">{row.SUPNAME}</td>
-                    <td className="border p-1">{row.STORE_NAME}</td>
-                    <td className="border p-1">{row.CPU}</td>
-                    <td className="border p-1">{row.MRP}</td>
-                    <td className="border p-1">{row.BALQTY}</td>
+                {/* TOP SPACER */}
+                {virtualItems.length > 0 && (
+                  <tr>
+                    <td
+                      colSpan={14}
+                      style={{
+                        height: `${virtualItems[0].start}px`,
+                        padding: 0,
+                        border: "none",
+                      }}
+                    />
                   </tr>
-                ))}
+                )}
+
+                {/* VISIBLE ROWS */}
+                {virtualItems.map((virtualRow) => {
+                  const row = reportData[virtualRow.index];
+
+                  return (
+                    <tr key={virtualRow.key} className="hover:bg-slate-100">
+                      <td className="border p-1 text-center">
+                        {virtualRow.index + 1}
+                      </td>
+                      <td className="border p-1">{row.BARCODE}</td>
+                      <td className="border p-1">{row.CATEGORY}</td>
+                      <td className="border p-1">{row.SUB_CATEGORY}</td>
+                      <td className="border p-1">{row.SUB_SUBCATEGORY}</td>
+                      <td className="border p-1">{row.STYLE_CODE}</td>
+                      <td className="border p-1">{row.COLOR}</td>
+                      <td className="border p-1">{row.SIZE}</td>
+                      <td className="border p-1">{row.BRAND}</td>
+                      <td className="border p-1">{row.SUPNAME}</td>
+                      <td className="border p-1">{row.STORE_NAME}</td>
+                      <td className="border p-1">{row.CPU}</td>
+                      <td className="border p-1">{row.MRP}</td>
+                      <td className="border p-1">{row.BALQTY}</td>
+                    </tr>
+                  );
+                })}
+
+                {/* BOTTOM SPACER */}
+                {virtualItems.length > 0 && (
+                  <tr>
+                    <td
+                      colSpan={14}
+                      style={{
+                        height: `${
+                          rowVirtualizer.getTotalSize() -
+                          (virtualItems[virtualItems.length - 1]?.end ?? 0)
+                        }px`,
+                        padding: 0,
+                        border: "none",
+                      }}
+                    />
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
@@ -428,3 +605,5 @@ export const ShopwiseTable = ({
     </>
   );
 };
+
+export default ShopwiseTable;

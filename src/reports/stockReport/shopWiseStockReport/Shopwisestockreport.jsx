@@ -292,7 +292,7 @@ export const Shopwisestockreport = () => {
   const [allLoaded, setAllLoaded] = useState(false);
   const [loadedRows, setLoadedRows] = useState(0);
 
-  const limit = 100;
+  const limit = 1000;
 
   // background fetch চলছে কিনা track করতে
   const isFetching = useRef(false);
