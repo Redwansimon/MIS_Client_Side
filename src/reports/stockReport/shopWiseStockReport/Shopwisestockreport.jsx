@@ -335,6 +335,7 @@ export const Shopwisestockreport = () => {
 
       // প্রথম page table এ দেখাও
       setReportData(firstData);
+      console.log(firstData);
       setLoadedRows(firstData.length);
       setLoading(false);
 

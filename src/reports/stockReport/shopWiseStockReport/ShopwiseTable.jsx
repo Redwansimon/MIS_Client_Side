@@ -560,19 +560,23 @@ export const ShopwiseTable = ({
                       <td className="border p-1 text-center">
                         {virtualRow.index + 1}
                       </td>
-                      <td className="border p-1">{row.BARCODE}</td>
+                      <td className="border p-1">{row.BARCODE}</td>   
+                      <td className="border p-1">{row.USER_BARCODE}</td>
+                      <td className="border p-1">{row.SALE_BARCODE}</td>                
                       <td className="border p-1">{row.CATEGORY}</td>
                       <td className="border p-1">{row.SUB_CATEGORY}</td>
                       <td className="border p-1">{row.SUB_SUBCATEGORY}</td>
                       <td className="border p-1">{row.STYLE_CODE}</td>
                       <td className="border p-1">{row.COLOR}</td>
                       <td className="border p-1">{row.SIZE}</td>
-                      <td className="border p-1">{row.BRAND}</td>
-                      <td className="border p-1">{row.SUPNAME}</td>
-                      <td className="border p-1">{row.STORE_NAME}</td>
+                      {/* <td className="border p-1">{row.BRAND}</td> */}
+                      {/* <td className="border p-1">{row.SUPNAME}</td> */}
+                      {/* <td className="border p-1">{row.STORE_NAME}</td> */}
                       <td className="border p-1">{row.CPU}</td>
                       <td className="border p-1">{row.MRP}</td>
                       <td className="border p-1">{row.BALQTY}</td>
+                      <td className="border p-1">{row.TOTAL_COST}</td>   
+                      <td className="border p-1">{row.TOTAL_MRP}</td>   
                     </tr>
                   );
                 })}
